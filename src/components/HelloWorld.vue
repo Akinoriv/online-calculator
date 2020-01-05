@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-6" id="example-3">
-        <span>Кастомизация решения в облаке: {{ firstBlock() }}</span>
+        <span>Кастомизация решения в облаке: {{ firstBlock() }}</span> 
         <br>
         <input type="radio" id="1" value="1" v-model="picked">
-        <label for="1">Нет различий с нашей коробкой</label>
+        <label for="1">Нет различий с нашей коробкой </label>
         <br>
         <input type="radio" id="2" value="2" v-model="picked">
         <label for="2">Все доработки будут произведины самостоятельно</label>
@@ -14,7 +14,8 @@
         <label for="5">Дополнительный модуль/доработка</label>
         <br>
         <br>
-        <div v-if="picked==3">
+      
+        <div v-if="picked==3"> 
           <input type="checkbox" id="1" value="1" v-model="checkedNames">
           <label for="+15 000p.">модуль 1</label>
           <br>
@@ -59,10 +60,12 @@ export default {
       checkedNames: [],
     }
   },
-  methods: {
-    firstBlock: function () {
-      var summa = this.checkedNames.length * 15000;
-      return summa;
+  methods: {                                              // команда описывающая метод
+    firstBlock: function () {                             // название функции
+      var summa = this.checkedNames.length * 15000;       // в переменную сумма положи количество нажатых чеков и умнож на 15000 
+      if (this.picked == 3) {                             // если нажат пикед 3
+        return summa;                                     // то выведи перменную сумма
+      }
     }
   }
 }
