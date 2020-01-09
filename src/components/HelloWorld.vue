@@ -5,73 +5,73 @@
         <div class="text-left form-check">
           <span>Кастомизация решения в облаке: {{ firstBlock() }}</span> 
           <br>
-          <input type="radio" class="form-check-input" id="1" value="1" v-model="picked">
-          <label for="1"> Нет различий с нашей коробкой <a>Бесплатно</a> </label> 
+          <input type="radio" class="form-check-input" id="A1" value="A1" v-model="picked">
+          <label for="A1"> Нет различий с нашей коробкой <a>Бесплатно</a> </label> 
           <br>
-          <input type="radio" class="form-check-input" id="2" value="2" v-model="picked">
-          <label for="2">Все доработки будут произведины самостоятельно <a>Бесплатно</a> </label>
+          <input type="radio" class="form-check-input" id="A2" value="A2" v-model="picked">
+          <label for="A2">Все доработки будут произведины самостоятельно <a>Бесплатно</a> </label>
           <br>
-          <input type="radio" class="form-check-input" id="3" value="3" v-model="picked">
-          <label for="3">Дополнительный модуль/доработка</label>
+          <input type="radio" class="form-check-input" id="A3" value="3" v-model="picked">
+          <label for="A3">Дополнительный модуль/доработка</label>
           <br>
         </div>
         <div class="text-left form-check" v-if="picked==3"> 
-          <input type="checkbox" class="form-check-input" id="4" value="4" v-model="checkedNames">
-          <label for="4">модуль 1 <a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A4" value="A4, 15000" v-model="checkedNames">
+          <label for="A4">модуль 1 <a>+15000p</a></label>
           <br>
-          <input type="checkbox" class="form-check-input" id="5" value="5" v-model="checkedNames">
-          <label for="5">модуль 2 <a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A5" value="A5, 15000" v-model="checkedNames">
+          <label for="A5">модуль 2 <a>+15000p</a></label>
           <br>
-          <input type="checkbox" class="form-check-input" id="6" value="6" v-model="checkedNames">
-          <label for="6">модуль 3 <a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A6" value="A6, 15000" v-model="checkedNames">
+          <label for="A6">модуль 3 <a>+15000p</a></label>
           <br>
-          <input type="checkbox" class="form-check-input" id="7" value="7" v-model="checkedNames">
-          <input type="text"  id="8" placeholder="Свой вариант" v-model="msg"> 
-          <label for="7"><a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A7" value="A7, 15000" v-model="checkedNames">
+          <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
+          <label for="A7"><a>+15000p</a></label>
         </div> 
         <br> 
       </div>
       <div class="col-lg-6 col-md-12" style="height: 300px;">
         <div class="text-left form-check">
-          <span>Обучение сотрудников: {{ splane }}</span>
+          <span>Обучение сотрудников: {{ splaneF() }}</span>
           <br>
-          <input type="radio" id="O1" class="form-check-input" value="Бесплатно" v-model="splane">
-          <label for="O1">1 - 5 сотрудников <a> Бесплатно</a></label>
+          <input type="radio" id="B1" class="form-check-input" value="B1, 0" v-model="splane">
+          <label for="B1">1 - 5 сотрудников <a> Бесплатно</a></label>
           <br>
-          <input type="radio" id="O2" class="form-check-input" value="+ 20 000 р." v-model="splane">
-          <label for="O2">6 - 10 сотрудников <a> +20 000 р</a></label>
+          <input type="radio" id="B2" class="form-check-input" value="B2, 20000" v-model="splane">
+          <label for="B2">6 - 10 сотрудников <a> +20 000 р</a></label>
           <br>
-          <input type="radio" id="O3" class="form-check-input" value="+ 40 000 р." v-model="splane">
-          <label for="O3">11 - 100 сотрудников <a> +40 000 р.</a></label>
+          <input type="radio" id="B3" class="form-check-input" value="B3, 40000" v-model="splane">
+          <label for="B3">11 - 100 сотрудников <a> +40 000 р.</a></label>
           <br>
-          <input type="radio" id="O4" class="form-check-input" value="+ 200 000 р." v-model="splane">
-          <label for="O4">101 - 500 сотрудников <a>+  200 000 р.</a></label>
+          <input type="radio" id="B4" class="form-check-input" value="B4, 200000" v-model="splane">
+          <label for="B4">101 - 500 сотрудников <a>+  200 000 р.</a></label>
           <br>
-          <input type="radio" id="O5" class="form-check-input" value="+5000 000 р." v-model="splane">
-          <label for="O5">501 - 2000 сотрудников <a> +5000 000 р.</a></label>
+          <input type="radio" id="B5" class="form-check-input" value="B5, 500000" v-model="splane">
+          <label for="B5">501 - 2000 сотрудников <a> +500 000 р.</a></label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check"> 
-          <span>Количество интеграций с другими программами : {{integ}} </span>
+          <span>Количество интеграций с другими программами : {{integF()}} </span>
           <br>
-          <input type="radio" id="K1" class="form-check-input" value="Бесплатно" v-model="integ">
+          <input type="radio" id="K1" class="form-check-input" value="K1, 0" v-model="integ">
           <label for="K1">Нет интеграций с другими программами<a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="K2" class="form-check-input"  value="+15 000 p." v-model="integ">
+          <input type="radio" id="K2" class="form-check-input"  value="K2, 15000" v-model="integ">
           <label for="K2">За каждую дополнительную интеграцию <a> +15 000 p.</a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check">
-          <span> Количество пользователей с разными доступами: {{speen}} </span>
+          <span> Количество пользователей с разными доступами: {{speenF()}} </span>
           <br>
-          <input type="radio" id="K3" class="form-check-input" value="Бесплатно" v-model="speen">
+          <input type="radio" id="K3" class="form-check-input" value="K3, 0" v-model="speen">
           <label for="K3">Если роль только одна - полный доступ <a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="K4" class="form-check-input"  value="+1 000 p." v-model="speen">
+          <input type="radio" id="K4" class="form-check-input"  value="K4, 1000" v-model="speen">
           <label for="K4">За каждую дополнительную роль <a> +1 000 p.</a></label>
         </div>
       </div>
@@ -79,43 +79,43 @@
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;"> 
         <div class="text-left form-check">
-          <span>Дополнительные отчеты и диаграммы : {{diag}} </span>
+          <span>Дополнительные отчеты и диаграммы : {{diagF()}} </span>
           <br>
-          <input type="radio" id="D1" class="form-check-input" value="Бесплатно" v-model="diag">
+          <input type="radio" id="D1" class="form-check-input" value="D1, 0" v-model="diag">
           <label for="D1">Если нет дополнительных диаграмм<a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="D2" class="form-check-input"  value="+15 000 p." v-model="diag">
+          <input type="radio" id="D2" class="form-check-input"  value="D2, 15000" v-model="diag">
           <label for="D2">За каждую дополнительную диаграмму <a> +15 000 p.</a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check">
-          <span> Автоматические процедуры {{avto}} </span>
+          <span> Автоматические процедуры {{avtoF()}} </span>
           <br>
-          <input type="radio" id="A1" class="form-check-input" value="Бесплатно" v-model="avto">
-          <label for="A1">Если нет автоматики <a> Бесплатно </a></label> 
+          <input type="radio" id="C1" class="form-check-input" value="C1, 0" v-model="avto">
+          <label for="C1">Если нет автоматики <a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="A2" class="form-check-input"  value="5000" v-model="avto">
-          <label for="A2">За каждую дополнительную автоматику <a> +5 000 p.</a></label>
+          <input type="radio" id="C2" class="form-check-input"  value="C2, 5000" v-model="avto">
+          <label for="C2">За каждую дополнительную автоматику <a> +5 000 p.</a></label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;"> 
         <div class="text-left form-check">
-          <span>Переезд с текущего решения : {{pere}} </span>
+          <span>Переезд с текущего решения : {{pereF()}} </span>
           <br>
-          <input type="radio" id="P1" class="form-check-input" value="Бесплатно" v-model="pere">
-          <label for="P1">Если данные перенесут сотрудники самостоятельно<a> Бесплатно </a></label> 
+          <input type="radio" id="P1" class="form-check-input" value="P1, 0" v-model="pere">
+          <label for="P1">Если данные перенесут сотрудники самостоятельно<a> КАк сделать кратко и чтобы они не были соедененны  </a></label> 
           <br>
-          <input type="radio" id="P2" class="form-check-input"  value="20000" v-model="pere">
-          <label for="P2">За каждый источник, откуда данные необходимо перенести автоматически <a> +20 000 p.</a></label>
+          <input  type="radio" id="P2" class="form-check-input"  value="P2, 20000" v-model="pere">
+          <label for="P2">За каждый источник, откуда данные необходимо перенести автоматически <a>  </a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left  form-check">
-        <span>База: Разовый платеж (внедрение): {{summaOb}} </span>
-        Действует при указанном наборе опций 
+        <span>База: Разовый платеж (внедрение):  </span> <br>
+        Действует при указанном наборе опций  {{Summ()}}
         </div>
       </div>
     </div>
@@ -128,8 +128,7 @@ export default {
   data() {
     
     return {
-      
-      pere:"",
+      pere:[],
       avto:"",
       diag:"",
       integ:"",
@@ -137,52 +136,121 @@ export default {
       picked: "",
       splane: "",
       checkedNames: [],
-      msg: '',
+      msg: "",
       checkedText: false,
      
     }
   },
 
   methods: {                                              // команда описывающая метод
+  //для скрытия эллемнтов
     firstBlock: function () {                             // название функции
       var summa = this.checkedNames.length * 15000;       // в переменную сумма положи количество нажатых чеков и умнож на 15000 
       if (this.picked == 3) {                             // если нажат пикед 3
         return summa;                                     // то выведи перменную сумма
       }
     },
-    summaOb: function(){
-      var mur = this.pere;
-      
-      return mur; 
+    
+    //тест
+ 
+
+    // для красивого вывода 
+    avtoF: function(){
+      var cut = this.avto.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
+      if (cut == 0) {
+        var app = "Бесплатно" 
+        return app;
+      }
+      else {
+        let app = "+"+ cut + " p.";
+        return app;
+      }
     },
 
-
-    toggleActive: function(s){ //мне нужно посмотреть что лежит в {{}} и посчитать это
-          s.active = !s.active;
+    diagF: function(){
+      var cut = this.diag.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
+      if (cut == 0) {
+        var app = "Бесплатно" 
+        return app;
+      }
+      else {
+        let app = "+"+ cut + " p.";
+        return app;
+      }
     },
 
-    total: function(){
-        var total = 0;
-        this.services.forEach(function(s){
-          if (s.active){
-            total+= s.price;
-          }
-        });
-        return total;
+    integF: function(){
+      var cut = this.integ.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
+      if (cut == 0) {
+        var app = "Бесплатно" 
+        return app;
+      }
+      else {
+        let app = "+"+ cut + " p.";
+        return app;
+      }
+    },
+
+    speenF: function(){
+      var cut = this.speen.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
+      if (cut == 0) {
+        var app = "Бесплатно" 
+        return app;
+      }
+      else {
+        let app = "+"+ cut + " p.";
+        return app;
+      }
+    },
+
+    pereF: function(){
+      var cut = this.pere.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
+      if (cut == 0) {
+        var app = "Бесплатно" 
+        return app;
+      }
+      else {
+        let app = "+"+ cut + " p.";
+        return app;
+      }
+    },
+
+    splaneF: function(){
+      var cut = this.splane.slice(4);
+      if (cut == 0) {
+        var app = "Бесплатно" 
+        return app;
+      }
+      else {
+        let app = "+"+ cut + " p.";
+        return app;
+      }
+    },
+    
+    
+    //нужна уникальность
+    //можно создать цикл, БЕГИ ПО ВСЕМ АКТИВНЫМ И СМОТРИ ЧТО У НИХ ЛЕЖИТ В ЦИФОРКЕ И СЧИТАЙ
+
+    //для счета
+    Summ: function(){
+     
+      var summa = Number.parseInt(this.pere.slice(4)) + Number.parseInt(this.avto.slice(4)) + Number.parseInt(this.diag.slice(4)) + Number.parseInt(this.integ.slice(4)) + Number.parseInt(this.speen.slice(4)) + Number.parseInt(this.splane.slice(4)); 
+      let ars = summa + this.firstBlock();
+      let arr = ars.slice();
+      let alp = "+"+ arr + " p.";
+      return alp;  
       
     },
-      
-    textInCheck: function() {
-      //var input = document.body.children[0];
-      //input.oninput = function() { }
+
+  
     
 
-    //var text = this.msg
+    //  T O D O var text = this.msg
     //if (text != null ) {    //если текстовое поле неизменеено
     // this.checkedText == !this.checkedText
     
     //если в текстовом поле произощли изменения, то сделай чекбокс == 5 активным 
-      }
+   //   }
       }
     }         
   
