@@ -3,19 +3,19 @@
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 300px;">
         <div class="text-left form-check">
-          <span>Кастомизация решения в облаке: {{ firstBlock() }}</span> 
+          <span>Кастомизация решения в облаке:  {{ answers[0].picked }}</span> 
           <br>
-          <input type="radio" class="form-check-input" id="A1" value="A1" v-model="picked">
-          <label for="A1"> Нет различий с нашей коробкой <a>Бесплатно</a> </label> 
+          <input type="radio" class="form-check-input" id="A1" value="0" v-model="answers[0].picked">
+          <label for="A1"> {{ answers[0].pickedInfo[0].text }} <a>Бесплатно</a> </label> 
           <br>
-          <input type="radio" class="form-check-input" id="A2" value="A2" v-model="picked">
+          <input type="radio" class="form-check-input" id="A2" value="1" v-model="answers[0].picked">
           <label for="A2">Все доработки будут произведины самостоятельно <a>Бесплатно</a> </label>
           <br>
-          <input type="radio" class="form-check-input" id="A3" value="3" v-model="picked">
+          <input type="radio" class="form-check-input" id="A3" value="2" v-model="answers[0].picked">
           <label for="A3">Дополнительный модуль/доработка</label>
           <br>
         </div>
-        <div class="text-left form-check" v-if="picked==3"> 
+        <div class="text-left form-check" v-if="answers[0].picked==2"> 
           <input type="checkbox" class="form-check-input" id="A4" value="A4, 15000" v-model="checkedNames">
           <label for="A4">модуль 1 <a>+15000p</a></label>
           <br>
@@ -33,21 +33,21 @@
       </div>
       <div class="col-lg-6 col-md-12" style="height: 300px;">
         <div class="text-left form-check">
-          <span>Обучение сотрудников: {{ splaneF() }}</span>
+          <span>Обучение сотрудников: {{ answers[1].picked}}</span>
           <br>
-          <input type="radio" id="B1" class="form-check-input" value="B1, 0" v-model="splane">
+          <input type="radio" id="B1" class="form-check-input" value="0" v-model="answers[1].picked">
           <label for="B1">1 - 5 сотрудников <a> Бесплатно</a></label>
           <br>
-          <input type="radio" id="B2" class="form-check-input" value="B2, 20000" v-model="splane">
+          <input type="radio" id="B2" class="form-check-input" value="1" v-model="answers[1].picked"> 
           <label for="B2">6 - 10 сотрудников <a> +20 000 р</a></label>
           <br>
-          <input type="radio" id="B3" class="form-check-input" value="B3, 40000" v-model="splane">
+          <input type="radio" id="B3" class="form-check-input" value="2" v-model="answers[1].picked">
           <label for="B3">11 - 100 сотрудников <a> +40 000 р.</a></label>
           <br>
-          <input type="radio" id="B4" class="form-check-input" value="B4, 200000" v-model="splane">
+          <input type="radio" id="B4" class="form-check-input" value="3" v-model="answers[1].picked">
           <label for="B4">101 - 500 сотрудников <a>+  200 000 р.</a></label>
           <br>
-          <input type="radio" id="B5" class="form-check-input" value="B5, 500000" v-model="splane">
+          <input type="radio" id="B5" class="form-check-input" value="4" v-model="answers[1].picked">
           <label for="B5">501 - 2000 сотрудников <a> +500 000 р.</a></label>
         </div>
       </div>
@@ -55,23 +55,23 @@
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check"> 
-          <span>Количество интеграций с другими программами : {{integF()}} </span>
+          <span>Количество интеграций с другими программами : {{answers[2].picked}} </span>
           <br>
-          <input type="radio" id="K1" class="form-check-input" value="K1, 0" v-model="integ">
+          <input type="radio" id="K1" class="form-check-input" value="0" v-model="answers[2].picked">
           <label for="K1">Нет интеграций с другими программами<a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="K2" class="form-check-input"  value="K2, 15000" v-model="integ">
+          <input type="radio" id="K2" class="form-check-input"  value="1" v-model="answers[2].picked">
           <label for="K2">За каждую дополнительную интеграцию <a> +15 000 p.</a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check">
-          <span> Количество пользователей с разными доступами: {{speenF()}} </span>
+          <span> Количество пользователей с разными доступами: {{answers[3].picked}} </span>
           <br>
-          <input type="radio" id="K3" class="form-check-input" value="K3, 0" v-model="speen">
+          <input type="radio" id="K3" class="form-check-input" value="0" v-model="answers[3].picked">
           <label for="K3">Если роль только одна - полный доступ <a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="K4" class="form-check-input"  value="K4, 1000" v-model="speen">
+          <input type="radio" id="K4" class="form-check-input"  value="1" v-model="answers[3].picked3">
           <label for="K4">За каждую дополнительную роль <a> +1 000 p.</a></label>
         </div>
       </div>
@@ -79,23 +79,23 @@
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;"> 
         <div class="text-left form-check">
-          <span>Дополнительные отчеты и диаграммы : {{diagF()}} </span>
+          <span>Дополнительные отчеты и диаграммы : {{answers[4].picked}} </span>
           <br>
-          <input type="radio" id="D1" class="form-check-input" value="D1, 0" v-model="diag">
+          <input type="radio" id="D1" class="form-check-input" value="0" v-model="answers[4].picked">
           <label for="D1">Если нет дополнительных диаграмм<a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="D2" class="form-check-input"  value="D2, 15000" v-model="diag">
+          <input type="radio" id="D2" class="form-check-input"  value="1" v-model="answers[4].picked">
           <label for="D2">За каждую дополнительную диаграмму <a> +15 000 p.</a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check">
-          <span> Автоматические процедуры {{avtoF()}} </span>
+          <span> Автоматические процедуры {{answers[5].picked}} </span>
           <br>
-          <input type="radio" id="C1" class="form-check-input" value="C1, 0" v-model="avto">
+          <input type="radio" id="C1" class="form-check-input" value="0" v-model="answers[5].picked">
           <label for="C1">Если нет автоматики <a> Бесплатно </a></label> 
           <br>
-          <input type="radio" id="C2" class="form-check-input"  value="C2, 5000" v-model="avto">
+          <input type="radio" id="C2" class="form-check-input"  value="1" v-model="answers[5].picked">
           <label for="C2">За каждую дополнительную автоматику <a> +5 000 p.</a></label>
         </div>
       </div>
@@ -103,19 +103,19 @@
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;"> 
         <div class="text-left form-check">
-          <span>Переезд с текущего решения : {{pereF()}} </span>
+          <span>Переезд с текущего решения : {{answers[6].picked}} </span>
           <br>
-          <input type="radio" id="P1" class="form-check-input" value="P1, 0" v-model="pere">
+          <input type="radio" id="P1" class="form-check-input" value="0" v-model="answers[6].picked">
           <label for="P1">Если данные перенесут сотрудники самостоятельно<a> КАк сделать кратко и чтобы они не были соедененны  </a></label> 
           <br>
-          <input  type="radio" id="P2" class="form-check-input"  value="P2, 20000" v-model="pere">
+          <input  type="radio" id="P2" class="form-check-input"  value="1" v-model="answers[6].picked">
           <label for="P2">За каждый источник, откуда данные необходимо перенести автоматически <a>  </a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left  form-check">
         <span>База: Разовый платеж (внедрение):  </span> <br>
-        Действует при указанном наборе опций  {{Summ()}}
+        Действует при указанном наборе опций  {{ }}
         </div>
       </div>
     </div>
@@ -128,20 +128,161 @@ export default {
   data() {
     
     return {
-      pere:[],
-      avto:"",
-      diag:"",
-      integ:"",
-      speen:"",
-      picked: "",
-      splane: "",
+      answers: [
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 20000,
+              text: "Нет различий с нашей коробкой",
+            },
+            {
+              id: 1,
+              prise: 15000,
+            },
+            {
+              id: 2,
+              prise: 50000,
+            },
+          ],
+          subAnswers: [],
+          subAnswerPrise: 20000,
+          text: "Кастомизация решения в облаке: ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 10000,
+              text: "1 - 5 сотрудников",
+            },
+            {
+              id: 1,
+              prise: 20000,
+              text:"6 - 10 сотрудников"
+            },
+            {
+              id: 2,
+              prise: 40000,
+              text:"11 - 100 сотрудников"
+            },
+            {
+              id: 3,
+              prise: 200000,
+              text: "101 - 500 сотрудников",
+            },
+            {
+              id: 4,
+              prise: 500000,
+              text: "501 - 2000 сотрудников",
+            },
+          ],
+          subAnswers: [],
+          subAnswerPrise: "",
+          text: "Обучение сотрудников:  ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 20000,
+              text: "Нет различий с нашей коробкой",
+            },
+            {
+              id: 1,
+              prise: 15000,
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 20000,
+          text: "Кастомизация решения в облаке: ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 20000,
+              text: "Нет различий с нашей коробкой",
+            },
+            {
+              id: 1,
+              prise: 15000,
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 20000,
+          text: "Кастомизация решения в облаке: ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 20000,
+              text: "Нет различий с нашей коробкой",
+            },
+            {
+              id: 1,
+              prise: 15000,
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 20000,
+          text: "Кастомизация решения в облаке: ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 20000,
+              text: "Нет различий с нашей коробкой",
+            },
+            {
+              id: 1,
+              prise: 15000,
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 20000,
+          text: "Кастомизация решения в облаке: ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 20000,
+              text: "Нет различий с нашей коробкой",
+            },
+            {
+              id: 1,
+              prise: 15000,
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 20000,
+          text: "Кастомизация решения в облаке: ",
+        },
+      ],
+      
+      
       checkedNames: [],
       msg: "",
       checkedText: false,
      
     }
   },
-
+/**
   methods: {                                              // команда описывающая метод
   //для скрытия эллемнтов
     firstBlock: function () {                             // название функции
@@ -155,6 +296,7 @@ export default {
  
 
     // для красивого вывода 
+    /**
     avtoF: function(){
       var cut = this.avto.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
       if (cut == 0) {
@@ -236,8 +378,8 @@ export default {
      
       var summa = Number.parseInt(this.pere.slice(4)) + Number.parseInt(this.avto.slice(4)) + Number.parseInt(this.diag.slice(4)) + Number.parseInt(this.integ.slice(4)) + Number.parseInt(this.speen.slice(4)) + Number.parseInt(this.splane.slice(4)); 
       let ars = summa + this.firstBlock();
-      let arr = ars.slice();
-      let alp = "+"+ arr + " p.";
+      //let arr = ars.slice();
+      let alp = "+"+ ars + " p.";
       return alp;  
       
     },
@@ -250,8 +392,8 @@ export default {
     // this.checkedText == !this.checkedText
     
     //если в текстовом поле произощли изменения, то сделай чекбокс == 5 активным 
-   //   }
-      }
+        } 
+      }*/
     }         
   
 
