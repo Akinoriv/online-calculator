@@ -3,113 +3,114 @@
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 300px;">
         <div class="text-left form-check">
-          <span>Кастомизация решения в облаке:  {{ answers[0].picked }}</span> 
+          <span> {{ answers[0].text }} {{subAnFun()}} </span> 
           <br>
           <input type="radio" class="form-check-input" id="A1" value="0" v-model="answers[0].picked">
-          <label for="A1"> {{ answers[0].pickedInfo[0].text }} <a>Бесплатно</a> </label> 
+          <label for="A1">{{ answers[0].pickedInfo[0].text }} <a> {{ answers[0].pickedInfo[0].prise }} </a> </label> 
           <br>
           <input type="radio" class="form-check-input" id="A2" value="1" v-model="answers[0].picked">
-          <label for="A2">Все доработки будут произведины самостоятельно <a>Бесплатно</a> </label>
+          <label for="A2">{{ answers[0].pickedInfo[1].text }} <a> {{ answers[0].pickedInfo[1].prise }} </a> </label>
           <br>
           <input type="radio" class="form-check-input" id="A3" value="2" v-model="answers[0].picked">
-          <label for="A3">Дополнительный модуль/доработка</label>
+          <label for="A3">{{ answers[0].pickedInfo[2].text }} <a> {{ answers[0].pickedInfo[2].prise }} </a></label>
           <br>
         </div>
         <div class="text-left form-check" v-if="answers[0].picked==2"> 
-          <input type="checkbox" class="form-check-input" id="A4" value="A4, 15000" v-model="checkedNames">
-          <label for="A4">модуль 1 <a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A4" value="0" v-model="answers[0].subAnswers">
+          <label for="A4">модуль 1 <a> {{answers[0].subAnswerPrise}} </a></label>
           <br>
-          <input type="checkbox" class="form-check-input" id="A5" value="A5, 15000" v-model="checkedNames">
-          <label for="A5">модуль 2 <a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A5" value="1" v-model="answers[0].subAnswers">
+          <label for="A5">модуль 2 <a> {{answers[0].subAnswerPrise}} </a></label>
           <br>
-          <input type="checkbox" class="form-check-input" id="A6" value="A6, 15000" v-model="checkedNames">
-          <label for="A6">модуль 3 <a>+15000p</a></label>
+          <input type="checkbox" class="form-check-input" id="A6" value="2" v-model="answers[0].subAnswers">
+          <label for="A6">модуль 3 <a> {{answers[0].subAnswerPrise}} </a></label>
           <br>
-          <input type="checkbox" class="form-check-input" id="A7" value="A7, 15000" v-model="checkedNames">
+          <input type="checkbox" class="form-check-input" id="A7" value="3" v-model="answers[0].subAnswers">
           <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
-          <label for="A7"><a>+15000p</a></label>
+          <label for="A7"><a> {{answers[0].subAnswerPrise}} </a></label>
         </div> 
         <br> 
       </div>
       <div class="col-lg-6 col-md-12" style="height: 300px;">
         <div class="text-left form-check">
-          <span>Обучение сотрудников: {{ answers[1].picked}}</span>
+          <span> {{ answers[1].text }} </span>
           <br>
           <input type="radio" id="B1" class="form-check-input" value="0" v-model="answers[1].picked">
-          <label for="B1">1 - 5 сотрудников <a> Бесплатно</a></label>
+          <label for="B1">{{ answers[1].pickedInfo[0].text }} <a>{{ answers[1].pickedInfo[0].prise }} </a></label>
           <br>
           <input type="radio" id="B2" class="form-check-input" value="1" v-model="answers[1].picked"> 
-          <label for="B2">6 - 10 сотрудников <a> +20 000 р</a></label>
+          <label for="B2">{{ answers[1].pickedInfo[1].text }} <a>{{ answers[1].pickedInfo[1].prise }} </a></label>
           <br>
           <input type="radio" id="B3" class="form-check-input" value="2" v-model="answers[1].picked">
-          <label for="B3">11 - 100 сотрудников <a> +40 000 р.</a></label>
+          <label for="B3">{{ answers[1].pickedInfo[2].text }} <a>{{ answers[1].pickedInfo[2].prise }} </a></label>
           <br>
           <input type="radio" id="B4" class="form-check-input" value="3" v-model="answers[1].picked">
-          <label for="B4">101 - 500 сотрудников <a>+  200 000 р.</a></label>
+          <label for="B4">{{ answers[1].pickedInfo[3].text }} <a>{{ answers[1].pickedInfo[3].prise }} </a></label>
           <br>
           <input type="radio" id="B5" class="form-check-input" value="4" v-model="answers[1].picked">
-          <label for="B5">501 - 2000 сотрудников <a> +500 000 р.</a></label>
+          <label for="B5">{{ answers[1].pickedInfo[4].text }} <a>{{ answers[1].pickedInfo[4].prise }} </a></label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check"> 
-          <span>Количество интеграций с другими программами : {{answers[2].picked}} </span>
+          <span> {{answers[2].text}} {{answers[2].picked}} </span>
           <br>
           <input type="radio" id="K1" class="form-check-input" value="0" v-model="answers[2].picked">
-          <label for="K1">Нет интеграций с другими программами<a> Бесплатно </a></label> 
+          <label for="K1"> {{answers[2].pickedInfo[0].text}} <a> {{answers[2].pickedInfo[0].prise}} </a></label> 
           <br>
           <input type="radio" id="K2" class="form-check-input"  value="1" v-model="answers[2].picked">
-          <label for="K2">За каждую дополнительную интеграцию <a> +15 000 p.</a></label>
+          <label for="K2"> {{answers[2].pickedInfo[1].text}} <a> {{answers[2].pickedInfo[1].prise}} </a></label>
         </div>
+        
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check">
-          <span> Количество пользователей с разными доступами: {{answers[3].picked}} </span>
+          <span>  {{answers[3].text}} {{answers[3].picked}}</span>
           <br>
           <input type="radio" id="K3" class="form-check-input" value="0" v-model="answers[3].picked">
-          <label for="K3">Если роль только одна - полный доступ <a> Бесплатно </a></label> 
+          <label for="K3"> {{answers[3].pickedInfo[0].text}} <a> {{answers[3].pickedInfo[0].prise}} </a></label> 
           <br>
-          <input type="radio" id="K4" class="form-check-input"  value="1" v-model="answers[3].picked3">
-          <label for="K4">За каждую дополнительную роль <a> +1 000 p.</a></label>
+          <input type="radio" id="K4" class="form-check-input"  value="1" v-model="answers[3].picked">
+          <label for="K4"> {{answers[3].pickedInfo[1].text}} <a> {{answers[3].pickedInfo[1].prise}} </a></label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;"> 
         <div class="text-left form-check">
-          <span>Дополнительные отчеты и диаграммы : {{answers[4].picked}} </span>
+          <span> {{answers[4].text}} {{answers[4].picked}} </span>
           <br>
           <input type="radio" id="D1" class="form-check-input" value="0" v-model="answers[4].picked">
-          <label for="D1">Если нет дополнительных диаграмм<a> Бесплатно </a></label> 
+          <label for="D1"> {{answers[4].pickedInfo[0].text}} <a> {{answers[4].pickedInfo[0].prise}} </a></label> 
           <br>
           <input type="radio" id="D2" class="form-check-input"  value="1" v-model="answers[4].picked">
-          <label for="D2">За каждую дополнительную диаграмму <a> +15 000 p.</a></label>
+          <label for="D2"> {{answers[4].pickedInfo[1].text}} <a> {{answers[4].pickedInfo[1].prise}} </a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
         <div class="text-left form-check">
-          <span> Автоматические процедуры {{answers[5].picked}} </span>
+          <span> {{answers[5].text}}  {{answers[5].picked}} </span>
           <br>
           <input type="radio" id="C1" class="form-check-input" value="0" v-model="answers[5].picked">
-          <label for="C1">Если нет автоматики <a> Бесплатно </a></label> 
+          <label for="C1">{{answers[5].pickedInfo[1].text}} <a> {{answers[5].pickedInfo[0].prise}} </a></label> 
           <br>
           <input type="radio" id="C2" class="form-check-input"  value="1" v-model="answers[5].picked">
-          <label for="C2">За каждую дополнительную автоматику <a> +5 000 p.</a></label>
+          <label for="C2">{{answers[5].pickedInfo[1].text}} <a> {{answers[5].pickedInfo[1].prise}} </a></label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12" style="height: 150px;"> 
         <div class="text-left form-check">
-          <span>Переезд с текущего решения : {{answers[6].picked}} </span>
+          <span> {{answers[6].text}} {{answers[6].picked}} </span>
           <br>
           <input type="radio" id="P1" class="form-check-input" value="0" v-model="answers[6].picked">
-          <label for="P1">Если данные перенесут сотрудники самостоятельно<a> КАк сделать кратко и чтобы они не были соедененны  </a></label> 
+          <label for="P1"> {{answers[6].pickedInfo[0].text}} <a> {{answers[6].pickedInfo[1].prise}} </a></label> 
           <br>
           <input  type="radio" id="P2" class="form-check-input"  value="1" v-model="answers[6].picked">
-          <label for="P2">За каждый источник, откуда данные необходимо перенести автоматически <a>  </a></label>
+          <label for="P2"> {{answers[6].pickedInfo[1].text}} <a> {{answers[6].pickedInfo[1].prise}} </a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="height: 150px;">
@@ -134,20 +135,22 @@ export default {
           pickedInfo: [
             {
               id: 0,
-              prise: 20000,
+              prise: 0,
               text: "Нет различий с нашей коробкой",
             },
             {
               id: 1,
-              prise: 15000,
+              prise: 0,
+              text:"Все доработки будут произведины самостоятельно",
             },
             {
               id: 2,
-              prise: 50000,
+              prise: 15000,
+              text:"Дополнительный модуль/доработка",
             },
           ],
           subAnswers: [],
-          subAnswerPrise: 20000,
+          subAnswerPrise: 15000,
           text: "Кастомизация решения в облаке: ",
         },
         {
@@ -188,17 +191,38 @@ export default {
           pickedInfo: [
             {
               id: 0,
-              prise: 20000,
-              text: "Нет различий с нашей коробкой",
+              prise: 0,
+              text: "Нет интеграций с другими программами",
             },
             {
               id: 1,
               prise: 15000,
+              text:"За каждую дополнительную интеграцию",
             },
             
           ],
           subAnswers: [],
-          subAnswerPrise: 20000,
+          subAnswerPrise: "",
+          text: "Количество пользователей с разными доступами: ",
+          prise:[],
+        },
+        {
+          picked: 1,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 0,
+              text: "Если роль только одна - полный доступ",
+            },
+            {
+              id: 1,
+              prise: 1000,
+              text: "За каждую дополнительную роль",
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 1000,
           text: "Кастомизация решения в облаке: ",
         },
         {
@@ -206,18 +230,38 @@ export default {
           pickedInfo: [
             {
               id: 0,
-              prise: 20000,
-              text: "Нет различий с нашей коробкой",
+              prise: 0,
+              text: "Если нет дополнительных диаграмм",
             },
             {
               id: 1,
               prise: 15000,
+              text: "За каждую дополнительную диаграмму",
             },
             
           ],
           subAnswers: [],
-          subAnswerPrise: 20000,
-          text: "Кастомизация решения в облаке: ",
+          subAnswerPrise: 15000,
+          text: "Дополнительные отчеты и диаграммы : ",
+        },
+        {
+          picked: 0,
+          pickedInfo: [
+            {
+              id: 0,
+              prise: 0,
+              text: "Если нет автоматики ",
+            },
+            {
+              id: 1,
+              prise: 5000,
+              text: "За каждую дополнительную автоматику",
+            },
+            
+          ],
+          subAnswers: [],
+          subAnswerPrise: 5000,
+          text: "Автоматические процедуры: ",
         },
         {
           picked: 0,
@@ -225,53 +269,18 @@ export default {
             {
               id: 0,
               prise: 20000,
-              text: "Нет различий с нашей коробкой",
+              text: "Если данные перенесут сотрудники самостоятельно",
             },
             {
               id: 1,
               prise: 15000,
+              text:"За каждый источник, откуда данные необходимо перенести автоматически",
             },
             
           ],
           subAnswers: [],
           subAnswerPrise: 20000,
-          text: "Кастомизация решения в облаке: ",
-        },
-        {
-          picked: 0,
-          pickedInfo: [
-            {
-              id: 0,
-              prise: 20000,
-              text: "Нет различий с нашей коробкой",
-            },
-            {
-              id: 1,
-              prise: 15000,
-            },
-            
-          ],
-          subAnswers: [],
-          subAnswerPrise: 20000,
-          text: "Кастомизация решения в облаке: ",
-        },
-        {
-          picked: 0,
-          pickedInfo: [
-            {
-              id: 0,
-              prise: 20000,
-              text: "Нет различий с нашей коробкой",
-            },
-            {
-              id: 1,
-              prise: 15000,
-            },
-            
-          ],
-          subAnswers: [],
-          subAnswerPrise: 20000,
-          text: "Кастомизация решения в облаке: ",
+          text: "Переезд с текущего решения: ",
         },
       ],
       
@@ -282,19 +291,21 @@ export default {
      
     }
   },
-/**
+
   methods: {                                              // команда описывающая метод
   //для скрытия эллемнтов
-    firstBlock: function () {                             // название функции
-      var summa = this.checkedNames.length * 15000;       // в переменную сумма положи количество нажатых чеков и умнож на 15000 
-      if (this.picked == 3) {                             // если нажат пикед 3
-        return summa;                                     // то выведи перменную сумма
+    subAnFun: function () {                             // название функции
+      var summa = this.answers[0].subAnswers.length * this.answers[0].subAnswerPrise;       // в переменную сумма положи количество нажатых чеков и умнож на 15000 
+      let app = "+"+ summa + " p.";
+      if (this.answers[0].picked == 2) {                             // если нажат пикед 3
+        return app;                                     // то выведи перменную сумма
       }
     },
+  }
     
     //тест
  
-
+/**
     // для красивого вывода 
     /**
     avtoF: function(){
