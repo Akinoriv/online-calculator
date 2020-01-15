@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-md-12" style="height: 300px;">
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <span> {{ answers[0].text }} {{subAnFun()}} </span> 
+          <span> {{ answers[0].text }} {{subAnFun(0)}} </span> 
           <br>
           <input type="radio" class="form-check-input" id="A1" value="0" v-model="answers[0].picked">
           <label for="A1">{{ answers[0].pickedInfo[0].text }} <a> {{ answers[0].pickedInfo[0].prise }} </a> </label> 
@@ -31,9 +31,9 @@
         </div> 
         <br> 
       </div>
-      <div class="col-lg-6 col-md-12" style="height: 300px;">
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <span> {{ answers[1].text }} </span>
+          <span> {{ answers[1].text }} {{subAnFun(1)}} </span>
           <br>
           <input type="radio" id="B1" class="form-check-input" value="0" v-model="answers[1].picked">
           <label for="B1">{{ answers[1].pickedInfo[0].text }} <a>{{ answers[1].pickedInfo[0].prise }} </a></label>
@@ -53,9 +53,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-md-12" style="height: 150px;">
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check"> 
-          <span> {{answers[2].text}} {{answers[2].picked}} </span>
+          <span> {{answers[2].text}}  {{subAnFun(2)}} </span>
           <br>
           <input type="radio" id="K1" class="form-check-input" value="0" v-model="answers[2].picked">
           <label for="K1"> {{answers[2].pickedInfo[0].text}} <a> {{answers[2].pickedInfo[0].prise}} </a></label> 
@@ -63,11 +63,24 @@
           <input type="radio" id="K2" class="form-check-input"  value="1" v-model="answers[2].picked">
           <label for="K2"> {{answers[2].pickedInfo[1].text}} <a> {{answers[2].pickedInfo[1].prise}} </a></label>
         </div>
-        
+              <div class="text-left form-check" v-if="answers[2].picked==1"> 
+              <input type="checkbox" class="form-check-input" id="20" value="0" v-model="answers[2].subAnswers">
+              <label for="20">модуль 1 <a> {{answers[2].subAnswerPrise}} </a></label>
+              <br>
+              <input type="checkbox" class="form-check-input" id="21" value="1" v-model="answers[2].subAnswers">
+              <label for="21">модуль 2 <a> {{answers[2].subAnswerPrise}} </a></label>
+              <br>
+              <input type="checkbox" class="form-check-input" id="22" value="2" v-model="answers[2].subAnswers">
+              <label for="22">модуль 3 <a> {{answers[2].subAnswerPrise}} </a></label>
+              <br>
+              <input type="checkbox" class="form-check-input" id="23" value="3" v-model="answers[2].subAnswers">
+              <input type="text"  id="23" placeholder="Свой вариант" v-model="msg"> 
+              <label for="23"><a> {{answers[2].subAnswerPrise}} </a></label>
+              </div> 
       </div>
-      <div class="col-lg-6 col-md-12" style="height: 150px;">
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <span>  {{answers[3].text}} {{answers[3].picked}}</span>
+          <span>  {{answers[3].text}}  {{subAnFun(3)}}</span>
           <br>
           <input type="radio" id="K3" class="form-check-input" value="0" v-model="answers[3].picked">
           <label for="K3"> {{answers[3].pickedInfo[0].text}} <a> {{answers[3].pickedInfo[0].prise}} </a></label> 
@@ -75,12 +88,26 @@
           <input type="radio" id="K4" class="form-check-input"  value="1" v-model="answers[3].picked">
           <label for="K4"> {{answers[3].pickedInfo[1].text}} <a> {{answers[3].pickedInfo[1].prise}} </a></label>
         </div>
+        <div class="text-left form-check" v-if="answers[3].picked==1"> 
+            <input type="checkbox" class="form-check-input" id="30" value="0" v-model="answers[3].subAnswers">
+            <label for="30">модуль 1 <a> {{answers[3].subAnswerPrise}} </a></label>
+            <br>
+            <input type="checkbox" class="form-check-input" id="31" value="1" v-model="answers[3].subAnswers">
+            <label for="31">модуль 2 <a> {{answers[3].subAnswerPrise}} </a></label>
+            <br>
+            <input type="checkbox" class="form-check-input" id="32" value="2" v-model="answers[3].subAnswers">
+            <label for="32">модуль 3 <a> {{answers[3].subAnswerPrise}} </a></label>
+            <br>
+            <input type="checkbox" class="form-check-input" id="33" value="3" v-model="answers[3].subAnswers">
+            <input type="text"  id="33" placeholder="Свой вариант" v-model="msg"> 
+            <label for="33"><a> {{answers[3].subAnswerPrise}} </a></label>
+        </div> 
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-md-12" style="height: 150px;"> 
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
         <div class="text-left form-check">
-          <span> {{answers[4].text}} {{answers[4].picked}} </span>
+          <span> {{answers[4].text}} {{subAnFun(4)}}</span>
           <br>
           <input type="radio" id="D1" class="form-check-input" value="0" v-model="answers[4].picked">
           <label for="D1"> {{answers[4].pickedInfo[0].text}} <a> {{answers[4].pickedInfo[0].prise}} </a></label> 
@@ -88,10 +115,24 @@
           <input type="radio" id="D2" class="form-check-input"  value="1" v-model="answers[4].picked">
           <label for="D2"> {{answers[4].pickedInfo[1].text}} <a> {{answers[4].pickedInfo[1].prise}} </a></label>
         </div>
+        <div class="text-left form-check" v-if="answers[4].picked==1"> 
+            <input type="checkbox" class="form-check-input" id="40" value="0" v-model="answers[4].subAnswers">
+            <label for="40">модуль 1 <a> {{answers[4].subAnswerPrise}} </a></label>
+            <br>
+            <input type="checkbox" class="form-check-input" id="41" value="1" v-model="answers[4].subAnswers">
+            <label for="41">модуль 2 <a> {{answers[4].subAnswerPrise}} </a></label>
+            <br>
+            <input type="checkbox" class="form-check-input" id="42" value="2" v-model="answers[4].subAnswers">
+            <label for="42">модуль 3 <a> {{answers[4].subAnswerPrise}} </a></label>
+            <br>
+            <input type="checkbox" class="form-check-input" id="43" value="3" v-model="answers[4].subAnswers">
+            <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
+            <label for="43"><a> {{answers[4].subAnswerPrise}} </a></label>
+        </div> 
       </div>
-      <div class="col-lg-6 col-md-12" style="height: 150px;">
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <span> {{answers[5].text}}  {{answers[5].picked}} </span>
+          <span> {{answers[5].text}}  {{subAnFun(5)}} </span>
           <br>
           <input type="radio" id="C1" class="form-check-input" value="0" v-model="answers[5].picked">
           <label for="C1">{{answers[5].pickedInfo[1].text}} <a> {{answers[5].pickedInfo[0].prise}} </a></label> 
@@ -99,29 +140,57 @@
           <input type="radio" id="C2" class="form-check-input"  value="1" v-model="answers[5].picked">
           <label for="C2">{{answers[5].pickedInfo[1].text}} <a> {{answers[5].pickedInfo[1].prise}} </a></label>
         </div>
+        <div class="text-left form-check" v-if="answers[5].picked==1"> 
+          <input type="checkbox" class="form-check-input" id="50" value="0" v-model="answers[5].subAnswers">
+          <label for="50">модуль 1 <a> {{answers[5].subAnswerPrise}} </a></label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="51" value="1" v-model="answers[5].subAnswers">
+          <label for="51">модуль 2 <a> {{answers[5].subAnswerPrise}} </a></label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="52" value="2" v-model="answers[5].subAnswers">
+          <label for="52">модуль 3 <a> {{answers[5].subAnswerPrise}} </a></label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="53" value="3" v-model="answers[5].subAnswers">
+          <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
+          <label for="53"><a> {{answers[5].subAnswerPrise}} </a></label>
+        </div> 
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-md-12" style="height: 150px;"> 
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
         <div class="text-left form-check">
-          <span> {{answers[6].text}} {{answers[6].picked}} </span>
+          <span> {{answers[6].text}}  {{subAnFun(6)}}</span>
           <br>
           <input type="radio" id="P1" class="form-check-input" value="0" v-model="answers[6].picked">
-          <label for="P1"> {{answers[6].pickedInfo[0].text}} <a> {{answers[6].pickedInfo[1].prise}} </a></label> 
+          <label for="P1"> {{answers[6].pickedInfo[0].text}} <a> {{answers[6].pickedInfo[0].prise}} </a></label> 
           <br>
           <input  type="radio" id="P2" class="form-check-input"  value="1" v-model="answers[6].picked">
           <label for="P2"> {{answers[6].pickedInfo[1].text}} <a> {{answers[6].pickedInfo[1].prise}} </a></label>
         </div>
+        <div class="text-left form-check" v-if="answers[6].picked==1"> 
+          <input type="checkbox" class="form-check-input" id="60" value="0" v-model="answers[6].subAnswers">
+          <label for="60">модуль 1 <a> {{answers[6].subAnswerPrise}} </a></label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="61" value="1" v-model="answers[6].subAnswers">
+          <label for="61">модуль 2 <a> {{answers[6].subAnswerPrise}} </a></label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="62" value="2" v-model="answers[6].subAnswers">
+          <label for="62">модуль 3 <a> {{answers[6].subAnswerPrise}} </a></label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="63" value="3" v-model="answers[6].subAnswers">
+          <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
+          <label for="63"><a> {{answers[6].subAnswerPrise}} </a></label>
+        </div> 
       </div>
-      <div class="col-lg-6 col-md-12" style="height: 150px;">
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left  form-check">
         <span>База: Разовый платеж (внедрение):  </span> <br>
-        Действует при указанном наборе опций  {{ }}
+        Действует при указанном наборе опций  {{ countFun() }} 
         </div>
       </div>
     </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -131,6 +200,7 @@ export default {
     return {
       answers: [
         {
+          text: "Кастомизация решения в облаке: ",
           picked: 0,
           pickedInfo: [
             {
@@ -145,16 +215,17 @@ export default {
             },
             {
               id: 2,
-              prise: 15000,
+              prise: 0,
               text:"Дополнительный модуль/доработка",
             },
           ],
           subAnswers: [],
           subAnswerPrise: 15000,
-          text: "Кастомизация решения в облаке: ",
+          
         },
         {
-          picked: 0,
+          text: "Обучение сотрудников:  ",
+          picked: 3,
           pickedInfo: [
             {
               id: 0,
@@ -184,9 +255,10 @@ export default {
           ],
           subAnswers: [],
           subAnswerPrise: "",
-          text: "Обучение сотрудников:  ",
+          
         },
         {
+          text: "Количество пользователей с разными доступами: ",
           picked: 0,
           pickedInfo: [
             {
@@ -202,12 +274,12 @@ export default {
             
           ],
           subAnswers: [],
-          subAnswerPrise: "",
-          text: "Количество пользователей с разными доступами: ",
+          subAnswerPrise: 15000,
           prise:[],
         },
         {
-          picked: 1,
+          text: "Кастомизация решения в облаке: ",
+          picked: 0,
           pickedInfo: [
             {
               id: 0,
@@ -223,9 +295,10 @@ export default {
           ],
           subAnswers: [],
           subAnswerPrise: 1000,
-          text: "Кастомизация решения в облаке: ",
+          
         },
         {
+          text: "Дополнительные отчеты и диаграммы : ",
           picked: 0,
           pickedInfo: [
             {
@@ -242,9 +315,10 @@ export default {
           ],
           subAnswers: [],
           subAnswerPrise: 15000,
-          text: "Дополнительные отчеты и диаграммы : ",
+          
         },
         {
+          text: "Автоматические процедуры: ",
           picked: 0,
           pickedInfo: [
             {
@@ -261,142 +335,74 @@ export default {
           ],
           subAnswers: [],
           subAnswerPrise: 5000,
-          text: "Автоматические процедуры: ",
+          
         },
         {
+          id: "6",
+          text: "Переезд с текущего решения: ",
           picked: 0,
           pickedInfo: [
             {
               id: 0,
-              prise: 20000,
+              prise: 0,
               text: "Если данные перенесут сотрудники самостоятельно",
             },
             {
               id: 1,
-              prise: 15000,
+              prise: 20000,
               text:"За каждый источник, откуда данные необходимо перенести автоматически",
             },
             
           ],
           subAnswers: [],
           subAnswerPrise: 20000,
-          text: "Переезд с текущего решения: ",
+          
         },
       ],
       
-      
-      checkedNames: [],
       msg: "",
-      checkedText: false,
-     
+      
     }
   },
 
-  methods: {                                              // команда описывающая метод
-  //для скрытия эллемнтов
-    subAnFun: function () {                             // название функции
-      var summa = this.answers[0].subAnswers.length * this.answers[0].subAnswerPrise;       // в переменную сумма положи количество нажатых чеков и умнож на 15000 
-      let app = "+"+ summa + " p.";
-      if (this.answers[0].picked == 2) {                             // если нажат пикед 3
-        return app;                                     // то выведи перменную сумма
+  methods: {                                              
+// для подсчета нажатых кнопок и красивого вывода
+    subAnFun: function (iAnswer) {                             
+      var sum = this.answers[iAnswer].subAnswers.length * this.answers[iAnswer].subAnswerPrise;
+      let app = "+"+ sum + " p.";
+      if (this.answers[iAnswer].picked == this.answers[iAnswer].pickedInfo.length - 1) {                             
+        return app;                                    
       }
     },
+// СПОСОБ ПОСЧИТАТЬ ВСЕ ВЫБРАННЫЕ КНОПКИ: беги по массиву и скадывай все цифорки 
+    countFun: function () {
+// беги по массиву смотри в пикед и бери соответсвующий ей прайс для айди в воросах... , беги по ансвер.пикед , смотри на номер(ид) (пикед[]), 
+      var sum = 0;
+      for (var idAnswer in this.answers) {                
+        var idPicked = this.answers[idAnswer].picked; 
+        var peuPrise = this.answers[idAnswer].pickedInfo[idPicked].prise + (this.answers[idAnswer].subAnswers.length * this.answers[idAnswer].subAnswerPrise);
+        sum = sum + peuPrise;
+      }
+      var wellSum = "+" + sum + " p.";
+      return wellSum;
+    },
+
+   
   }
+}
+
     
-    //тест
- 
-/**
-    // для красивого вывода 
-    /**
-    avtoF: function(){
-      var cut = this.avto.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
-      if (cut == 0) {
-        var app = "Бесплатно" 
-        return app;
+
+  /**  
+   * Пытаюсь заменить 0 на бесплатно, с помощью перебора ( беги по прайсам, если он равен 0 возвращай бесплатно, иначе возвращай то что лежит в прайсе)
+  testFun: function(iAnswers) {
+      if (this.answers[iAnswers].pickedInfo.prise = 0) {
+        return "Бесплатно";
       }
       else {
-        let app = "+"+ cut + " p.";
-        return app;
+        return this.answers[iAnswers].pickedInfo.prise; 
       }
-    },
-
-    diagF: function(){
-      var cut = this.diag.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
-      if (cut == 0) {
-        var app = "Бесплатно" 
-        return app;
-      }
-      else {
-        let app = "+"+ cut + " p.";
-        return app;
-      }
-    },
-
-    integF: function(){
-      var cut = this.integ.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
-      if (cut == 0) {
-        var app = "Бесплатно" 
-        return app;
-      }
-      else {
-        let app = "+"+ cut + " p.";
-        return app;
-      }
-    },
-
-    speenF: function(){
-      var cut = this.speen.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
-      if (cut == 0) {
-        var app = "Бесплатно" 
-        return app;
-      }
-      else {
-        let app = "+"+ cut + " p.";
-        return app;
-      }
-    },
-
-    pereF: function(){
-      var cut = this.pere.slice(4); // взять массив/строчку, разделить эллементы 4+ записать их в гав. Добавить + р. 
-      if (cut == 0) {
-        var app = "Бесплатно" 
-        return app;
-      }
-      else {
-        let app = "+"+ cut + " p.";
-        return app;
-      }
-    },
-
-    splaneF: function(){
-      var cut = this.splane.slice(4);
-      if (cut == 0) {
-        var app = "Бесплатно" 
-        return app;
-      }
-      else {
-        let app = "+"+ cut + " p.";
-        return app;
-      }
-    },
-    
-    
-    //нужна уникальность
-    //можно создать цикл, БЕГИ ПО ВСЕМ АКТИВНЫМ И СМОТРИ ЧТО У НИХ ЛЕЖИТ В ЦИФОРКЕ И СЧИТАЙ
-
-    //для счета
-    Summ: function(){
-     
-      var summa = Number.parseInt(this.pere.slice(4)) + Number.parseInt(this.avto.slice(4)) + Number.parseInt(this.diag.slice(4)) + Number.parseInt(this.integ.slice(4)) + Number.parseInt(this.speen.slice(4)) + Number.parseInt(this.splane.slice(4)); 
-      let ars = summa + this.firstBlock();
-      //let arr = ars.slice();
-      let alp = "+"+ ars + " p.";
-      return alp;  
-      
-    },
-
-  
-    
+    }
 
     //  T O D O var text = this.msg
     //if (text != null ) {    //если текстовое поле неизменеено
@@ -405,7 +411,7 @@ export default {
     //если в текстовом поле произощли изменения, то сделай чекбокс == 5 активным 
         } 
       }*/
-    }         
+             
   
 
 </script>
@@ -428,3 +434,6 @@ a {
   color: #42b983;
 }
 </style>
+
+
+
