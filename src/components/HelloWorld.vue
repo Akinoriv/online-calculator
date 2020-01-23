@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="row">
-      <h1 class="col-md-12 " align="center" > Разовый платеж (Внедрение) </h1>
+      <h1 class="col-md-12 " align="center" > Разовый платеж (Внедрение) <a>  {{ prettily(countFun(0)) }} {{ test }} </a> </h1>
       <div  class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <h2> {{ answers[0].text }} {{ prettily(answers[0].pickedInfo[answers[0].picked].prise) }} </h2> 
+          <h2> {{ answers[0].text }} {{ prettily(answerCost(0)) }}  </h2> 
           <br>
           <input type="radio" class="form-check-input" id="A1" value="0" v-model="answers[0].picked">
           <label for="A1">{{ answers[0].pickedInfo[0].text }} <a> {{ prettily(answers[0].pickedInfo[0].prise) }} </a> </label> 
@@ -19,34 +19,27 @@
         <div class="text-left form-check" v-if="answers[0].picked==2"> 
           <div class="text-left form-check" v-for="(answer, i) in answers[0].subAnswers" v-bind:key="answer.id">
             
-              <input 
-                type="checkbox" 
-                class="form-check-input" 
-                v-model="answers[0].subAnswers[i].active"
-              >
-              <input 
-                v-if="answers[0].subAnswers[i].isLabel == false"
-                type="text" 
-                v-model="answers[0].subAnswers[i].text"
-                placeholder="Свой вариант"
-                v-on:input="test(0, i)"
-                
-              > 
-              
-              <label 
-                v-else
-                type="text"  
-              > 
-                {{ answers[0].subAnswers[i].text }} 
-              </label>
-            
-            <label> <a> {{ prettily(answers[0].subAnswerPrise) }} </a></label>
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              v-model="answers[0].subAnswers[i].active"
+            >
+            <input 
+              v-if="answers[0].subAnswers[i].isLabel == false"
+              type="text" 
+              v-model="answers[0].subAnswers[i].text"
+              placeholder="Свой вариант"
+              v-on:input="endlessField(0, i)"
+            > 
+            <label v-else type="text"> {{ answers[0].subAnswers[i].text }} </label>
+            <label><a> {{ prettily(answers[0].subAnswerPrise) }} </a></label>
+          
           </div>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <h2> {{ answers[1].text }} {{ prettily(answers[1].pickedInfo[answers[1].picked].prise) }} </h2>
+          <h2> {{ answers[1].text }} {{ prettily(answerCost(1)) }} </h2>
           <br>
           <input type="radio" id="B0" class="form-check-input" value="0" v-model="answers[1].picked">
           <label for="B0">{{ answers[1].pickedInfo[0].text }} <a>{{ prettily(answers[1].pickedInfo[0].prise) }} </a></label>
@@ -198,19 +191,19 @@
         Действует при указанном наборе опций  {{ prettily(countFun()) }} 
         </div>
       </div>
-      <h1 class="col-md-12 " align="center" > Ежемесячный платеж </h1>
+      <h1 class="col-md-12 " align="center" > Ежемесячный платеж <a> {{ prettily(monthlySumFun()) }} </a></h1>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
           <h2> {{ users[0].text0 }}  </h2> 
           <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users.user"> 
-          <label for="E0"><a> {{userFun()}} </a></label>
+          <label for="E0"><a> {{prettily(userFun())}} </a></label>
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
           <h2> {{ users[0].text1 }}  </h2> 
           <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users.maintenance"> 
-          <label for="E1"><a> {{ prettily(maintFun()) }} {{ prettily(monthlySumFun()) }} </a></label>
+          <label for="E1"><a> {{ prettily(maintFun()) }}  </a></label>
         </div>
       </div>
       </div>
@@ -223,6 +216,7 @@ export default {
   data() {
     
     return {
+      test: "345",
       answers: [
         {
           id: "0",
@@ -494,19 +488,40 @@ export default {
     }
   },
 
-  methods: {                                              
-// для подсчета нажатых кнопок и красивого вывода
-    subAnFun: function (iAnswer) {    
-      var sum = 0;                         
-      sum = this.answers[iAnswer].subAnswers.length * this.answers[iAnswer].subAnswerPrise;
-      if (this.answers[iAnswer].picked == this.answers[iAnswer].pickedInfo.length - 1) {                             
-        return sum;                                    
+  methods: {    
+    answerCost: function (idAnswer) {
+      var sum = 0;
+      var answer = this.answers[idAnswer];
+      sum = sum + answer.pickedInfo[answer.picked].prise;
+
+      if (answer.picked == answer.pickedInfo.length - 1) {
+        var subAnswers = answer.subAnswers;
+        for (let idSubAnswer in subAnswers) {
+          if (subAnswers[idSubAnswer].active == true) {
+            sum = sum + answer.subAnswerPrise
+          }
+        }
       }
-    },
+
+      return sum;
+    } ,                                         
+// для подсчета нажатых кнопок и красивого вывода
+    //subAnFun: function (iAnswer) {    
+     // var sum = 0;
+     // var subAnswers = this.answers[iAnswer].subAnswers;
+     // for (var iSubAns in subAnswers) { 
+     //   if (subAnswers[iSubAns].active = true) {
+      //    sum = sum + subAnswers[iSubAns].prise
+      //  }                        
+                               
+       // return sum;                                    
+     // }
+   // },
 // СПОСОБ ПОСЧИТАТЬ ВСЕ ВЫБРАННЫЕ КНОПКИ: беги по массиву и скадывай все цифорки 
     countFun: function () {
-// беги по массиву смотри в пикед и бери соответсвующий ей прайс для айди в воросах... , беги по ансвер.пикед , смотри на номер(ид) (пикед[]), 
+ 
       var sum = 0;
+      //this.subAnFun(idAnswer);
       for (var idAnswer in this.answers) {                
         var idPicked = this.answers[idAnswer].picked; 
         if (this.answers[idAnswer].picked == this.answers[idAnswer].pickedInfo.length - 1) {                             
@@ -525,16 +540,16 @@ export default {
       if ( num == 0 ) {
         prettilyNum = "Бесплатно"
       } else {
-        prettilyNum = "+" + num + " p."
+        prettilyNum = " +" + num + " p."
       }
       return prettilyNum;
     },
-    test: function (iAnswer, iSubAns) {
-      var data = this.answers[iAnswer].subAnswers;
-      var lastId = data.length - 1
-      if (data[lastId].text != 0) {
-        data[iSubAns].active = true
-        data.push(
+    endlessField: function (iAnswer, iSubAns) {
+      var subAnswers = this.answers[iAnswer].subAnswers;
+      var lastId = subAnswers.length - 1
+      if (subAnswers[lastId].text != 0) {
+        subAnswers[iSubAns].active = true
+        subAnswers.push(
           {
             id: lastId + 1,
             text: "",
@@ -543,35 +558,17 @@ export default {
             msg: [],
           }
         )
-      } else if (data[iSubAns].text != 0) {
-        data[iSubAns].active = true
-      } else if (data[iSubAns].text.length == 0) {
-        data[iSubAns].active = false
-        data.splice(iSubAns, 1); 
+      } else if (subAnswers[iSubAns].text != 0) {
+        subAnswers[iSubAns].active = true
+      } else if (subAnswers[iSubAns].text.length == 0) {
+        subAnswers[iSubAns].active = false
+        subAnswers.splice(iSubAns, 1); 
       } 
       
     },
-    /** 
-    msgFun: function() {
-      //var safeMess = "";
-      //for (var idAnswer in this.answers) {   
-        var idPicked = this.answers[0].subAnswers[3].msg; 
-        if (idPicked.length != 0 ) {
-          this.answers[0].subAnswers[3] = true
-          //item.active = true
-// сделай чекбокс тогоже вопроса трушным // найди чекбокс с таким же вайл // 
-          alert (this.answers[0].subAnswers[3].msg)
-
-        //}
-
-      //if (this.answers.msg = 1 ) {
-
-      }
-    }, */
-
     maintFun: function() {
       var sum = 0;
-      if(this.users.maintenance >= 1 && this.users.maintenance <= 20000){
+      if(this.users.maintenance >= 1 && this.users.maintenance <= 2000000000){
         sum = this.users.maintenance * 500;
       }
       return sum;
@@ -589,7 +586,7 @@ export default {
         sum = this.users.user * 700;
       } else if(this.users.user >= 101 && this.users.user <= 500){
         sum = this.users.user * 600;
-      } else if(this.users.user >= 501 && this.users.user <= 20000){
+      } else if(this.users.user >= 501 && this.users.user <= 20000000000){
         sum = this.users.user * 400;
       }
       return sum;
@@ -598,32 +595,9 @@ export default {
     monthlySumFun: function() {
       let sum = this.maintFun () + this.userFun ();
       return sum
-    },
+    }
   }
 }
-
-    
-
-  /**  
-   * Пытаюсь заменить 0 на бесплатно, с помощью перебора ( беги по прайсам, если он равен 0 возвращай бесплатно, иначе возвращай то что лежит в прайсе)
-  testFun: function(iAnswers) {
-      if (this.answers[iAnswers].pickedInfo.prise = 0) {
-        return "Бесплатно";
-      }
-      else {
-        return this.answers[iAnswers].pickedInfo.prise; 
-      }
-    }
-
-    //  T O D O var text = this.msg
-    //if (text != null ) {    //если текстовое поле неизменеено
-    // this.checkedText == !this.checkedText
-    
-    //если в текстовом поле произощли изменения, то сделай чекбокс == 5 активным // беги по массиву ансвер смотри в пикединфо 
-        } 
-      }*/
-             
-  
 
 </script>
 
