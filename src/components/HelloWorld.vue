@@ -530,10 +530,11 @@ export default {
       return prettilyNum;
     },
     test: function (iAnswer, iSubAns) {
-      var lastId = this.answers[iAnswer].subAnswers.length - 1
-      if (this.answers[iAnswer].subAnswers[lastId].text != 0) {
-        this.answers[iAnswer].subAnswers[iSubAns].active = true
-        this.answers[iAnswer].subAnswers.push(
+      var data = this.answers[iAnswer].subAnswers;
+      var lastId = data.length - 1
+      if (data[lastId].text != 0) {
+        data[iSubAns].active = true
+        data.push(
           {
             id: lastId + 1,
             text: "",
@@ -542,11 +543,12 @@ export default {
             msg: [],
           }
         )
-      } else if (this.answers[iAnswer].subAnswers[iSubAns].text != 0) {
-        this.answers[iAnswer].subAnswers[iSubAns].active = true
-      } else if (this.answers[iAnswer].subAnswers[iSubAns].text.length == 0) {
-        this.answers[iAnswer].subAnswers[iSubAns].active = false
-      }
+      } else if (data[iSubAns].text != 0) {
+        data[iSubAns].active = true
+      } else if (data[iSubAns].text.length == 0) {
+        data[iSubAns].active = false
+        data.splice(iSubAns, 1); 
+      } 
       
     },
     /** 
