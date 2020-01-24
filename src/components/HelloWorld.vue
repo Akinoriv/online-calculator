@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <h1 class="col-md-12 " align="center" > Разовый платеж (Внедрение) <a>  {{ prettily(countFun(0)) }} {{ test }} </a> </h1>
+      <h1 class="col-md-12 " align="center" > Разовый платеж (Внедрение) <a>  {{ prettily(countIntegration()) }} </a> </h1>
       <div  class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
           <h2> {{ answers[0].text }} {{ prettily(answerCost(0)) }}  </h2> 
@@ -62,7 +62,7 @@
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check"> 
-          <h2> {{answers[2].text}}  {{ prettily(answers[2].pickedInfo[answers[2].picked].prise) }} </h2>
+          <h2> {{answers[2].text}}  {{ prettily(answerCost(2)) }} </h2>
           <br>
           <input type="radio" id="K1" class="form-check-input" value="0" v-model="answers[2].picked">
           <label for="K1"> {{answers[2].pickedInfo[0].text}} <a> {{ prettily(answers[2].pickedInfo[0].prise) }} </a></label> 
@@ -71,23 +71,29 @@
           <label for="K2"> {{answers[2].pickedInfo[1].text}} <a> {{ prettily(answers[2].pickedInfo[1].prise) }} </a></label>
         </div>
           <div class="text-left form-check" v-if="answers[2].picked==1"> 
-            <input type="checkbox" class="form-check-input" id="20" value="0" v-model="answers[2].subAnswers">
-            <label for="20">модуль 1 <a> {{answers[2].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="21" value="1" v-model="answers[2].subAnswers">
-            <label for="21">модуль 2 <a> {{answers[2].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="22" value="2" v-model="answers[2].subAnswers">
-            <label for="22">модуль 3 <a> {{answers[2].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="23" value="3" v-model="answers[2].subAnswers">
-            <input type="text"  id="23" placeholder="Свой вариант" v-model="msg"> 
-            <label for="23"><a> {{answers[2].subAnswerPrise}} </a></label>
+            <div class="text-left form-check" v-for="(answer, i) in answers[2].subAnswers" v-bind:key="answer.id">
+            
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              v-model="answers[2].subAnswers[i].active"
+            >
+            <input 
+              v-if="answers[2].subAnswers[i].isLabel == false"
+              type="text" 
+              v-model="answers[2].subAnswers[i].text"
+              placeholder="Свой вариант"
+              v-on:input="endlessField(2, i)"
+            > 
+            <label v-else type="text"> {{ answers[2].subAnswers[i].text }} </label>
+            <label><a> {{ prettily(answers[2].subAnswerPrise) }} </a></label>
+          
+            </div>
           </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <h2>  {{answers[3].text}}  {{ prettily(answers[3].pickedInfo[answers[3].picked].prise) }}</h2>
+          <h2>  {{answers[3].text}}  {{ prettily(answerCost(3)) }} </h2>
           <br>
           <input type="radio" id="K3" class="form-check-input" value="0" v-model="answers[3].picked">
           <label for="K3"> {{answers[3].pickedInfo[0].text}} <a> {{ prettily(answers[3].pickedInfo[0].prise) }} </a></label> 
@@ -96,23 +102,29 @@
           <label for="K4"> {{answers[3].pickedInfo[1].text}} <a> {{ prettily(answers[3].pickedInfo[1].prise) }} </a></label>
         </div>
         <div class="text-left form-check" v-if="answers[3].picked==1"> 
-            <input type="checkbox" class="form-check-input" id="30" value="0" v-model="answers[3].subAnswers">
-            <label for="30">модуль 1 <a> {{answers[3].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="31" value="1" v-model="answers[3].subAnswers">
-            <label for="31">модуль 2 <a> {{answers[3].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="32" value="2" v-model="answers[3].subAnswers">
-            <label for="32">модуль 3 <a> {{answers[3].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="33" value="3" v-model="answers[3].subAnswers">
-            <input type="text"  id="33" placeholder="Свой вариант" value="3" v-model="msg"> 
-            <label for="33"><a> {{answers[3].subAnswerPrise}} </a></label>
+            <div class="text-left form-check" v-for="(answer, i) in answers[3].subAnswers" v-bind:key="answer.id">
+            
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              v-model="answers[3].subAnswers[i].active"
+            >
+            <input 
+              v-if="answers[3].subAnswers[i].isLabel == false"
+              type="text" 
+              v-model="answers[3].subAnswers[i].text"
+              placeholder="Свой вариант"
+              v-on:input="endlessField(3, i)"
+            > 
+            <label v-else type="text"> {{ answers[3].subAnswers[i].text }} </label>
+            <label><a> {{ prettily(answers[3].subAnswerPrise) }} </a></label>
+          
+          </div>
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
         <div class="text-left form-check">
-          <h2> {{answers[4].text}} {{ prettily(answers[4].pickedInfo[answers[4].picked].prise) }}</h2>
+          <h2> {{answers[4].text}} {{ prettily(answerCost(4)) }} </h2>
           <br>
           <input type="radio" id="D1" class="form-check-input" value="0" v-model="answers[4].picked">
           <label for="D1"> {{answers[4].pickedInfo[0].text}} <a> {{ prettily(answers[4].pickedInfo[0].prise) }} </a></label> 
@@ -121,23 +133,29 @@
           <label for="D2"> {{answers[4].pickedInfo[1].text}} <a> {{ prettily(answers[4].pickedInfo[1].prise) }} </a></label>
         </div>
         <div class="text-left form-check" v-if="answers[4].picked==1"> 
-            <input type="checkbox" class="form-check-input" id="40" value="0" v-model="answers[4].subAnswers">
-            <label for="40">модуль 1 <a> {{answers[4].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="41" value="1" v-model="answers[4].subAnswers">
-            <label for="41">модуль 2 <a> {{answers[4].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="42" value="2" v-model="answers[4].subAnswers">
-            <label for="42">модуль 3 <a> {{answers[4].subAnswerPrise}} </a></label>
-            <br>
-            <input type="checkbox" class="form-check-input" id="43" value="3" v-model="answers[4].subAnswers">
-            <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
-            <label for="43"><a> {{answers[4].subAnswerPrise}} </a></label>
+          <div class="text-left form-check" v-for="(answer, i) in answers[4].subAnswers" v-bind:key="answer.id">
+
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              v-model="answers[4].subAnswers[i].active"
+            >
+            <input 
+              v-if="answers[4].subAnswers[i].isLabel == false"
+              type="text" 
+              v-model="answers[4].subAnswers[i].text"
+              placeholder="Свой вариант"
+              v-on:input="endlessField(4, i)"
+            > 
+            <label v-else type="text"> {{ answers[4].subAnswers[i].text }} </label>
+            <label><a> {{ prettily(answers[4].subAnswerPrise) }} </a></label>
+
+          </div>
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left form-check">
-          <h2> {{answers[5].text}}  {{ prettily(answers[5].pickedInfo[answers[5].picked].prise) }} </h2>
+          <h2> {{answers[5].text}}  {{ prettily(answerCost(5)) }} </h2>
           <br>
           <input type="radio" id="C1" class="form-check-input" value="0" v-model="answers[5].picked">
           <label for="C1">{{answers[5].pickedInfo[1].text}} <a> {{ prettily(answers[5].pickedInfo[0].prise) }} </a></label> 
@@ -146,23 +164,29 @@
           <label for="C2">{{answers[5].pickedInfo[1].text}} <a> {{ prettily(answers[5].pickedInfo[1].prise) }} </a></label>
         </div>
         <div class="text-left form-check" v-if="answers[5].picked==1"> 
-          <input type="checkbox" class="form-check-input" id="50" value="0" v-model="answers[5].subAnswers">
-          <label for="50">модуль 1 <a> {{answers[5].subAnswerPrise}} </a></label>
-          <br>
-          <input type="checkbox" class="form-check-input" id="51" value="1" v-model="answers[5].subAnswers">
-          <label for="51">модуль 2 <a> {{answers[5].subAnswerPrise}} </a></label>
-          <br>
-          <input type="checkbox" class="form-check-input" id="52" value="2" v-model="answers[5].subAnswers">
-          <label for="52">модуль 3 <a> {{answers[5].subAnswerPrise}} </a></label>
-          <br>
-          <input type="checkbox" class="form-check-input" id="53" value="3" v-model="answers[5].subAnswers">
-          <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
-          <label for="53"><a> {{answers[5].subAnswerPrise}} </a></label>
+          <div class="text-left form-check" v-for="(answer, i) in answers[5].subAnswers" v-bind:key="answer.id">
+
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              v-model="answers[5].subAnswers[i].active"
+            >
+            <input 
+              v-if="answers[5].subAnswers[i].isLabel == false"
+              type="text" 
+              v-model="answers[5].subAnswers[i].text"
+              placeholder="Свой вариант"
+              v-on:input="endlessField(5, i)"
+            > 
+            <label v-else type="text"> {{ answers[5].subAnswers[i].text }} </label>
+            <label><a> {{ prettily(answers[5].subAnswerPrise) }} </a></label>
+            
+          </div>
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
         <div class="text-left form-check">
-          <h2> {{answers[6].text}}  {{ prettily(answers[6].pickedInfo[answers[6].picked].prise) }}</h2>
+          <h2> {{answers[6].text}}  {{ prettily(answerCost(6)) }} </h2>
           <br>
           <input type="radio" id="P1" class="form-check-input" value="0" v-model="answers[6].picked">
           <label for="P1"> {{answers[6].pickedInfo[0].text}} <a> {{ prettily(answers[6].pickedInfo[0].prise) }} </a></label> 
@@ -171,24 +195,30 @@
           <label for="P2"> {{answers[6].pickedInfo[1].text}} <a> {{ prettily(answers[6].pickedInfo[1].prise) }} </a></label>
         </div>
         <div class="text-left form-check" v-if="answers[6].picked==1"> 
-          <input type="checkbox" class="form-check-input" id="60" value="0" v-model="answers[6].subAnswers">
-          <label for="60">модуль 1 <a> {{answers[6].subAnswerPrise}} </a></label>
-          <br>
-          <input type="checkbox" class="form-check-input" id="61" value="1" v-model="answers[6].subAnswers">
-          <label for="61">модуль 2 <a> {{answers[6].subAnswerPrise}} </a></label>
-          <br>
-          <input type="checkbox" class="form-check-input" id="62" value="2" v-model="answers[6].subAnswers">
-          <label for="62">модуль 3 <a> {{answers[6].subAnswerPrise}} </a></label>
-          <br>
-          <input type="checkbox" class="form-check-input" id="63" value="3" v-model="answers[6].subAnswers">
-          <input type="text"  id="A8" placeholder="Свой вариант" v-model="msg"> 
-          <label for="63"><a> {{answers[6].subAnswerPrise}} </a></label>
+          <div class="text-left form-check" v-for="(answer, i) in answers[6].subAnswers" v-bind:key="answer.id">
+            
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              v-model="answers[6].subAnswers[i].active"
+            >
+            <input 
+              v-if="answers[6].subAnswers[i].isLabel == false"
+              type="text" 
+              v-model="answers[6].subAnswers[i].text"
+              placeholder="Свой вариант"
+              v-on:input="endlessField(6, i)"
+            > 
+            <label v-else type="text"> {{ answers[6].subAnswers[i].text }} </label>
+            <label><a> {{ prettily(answers[6].subAnswerPrise) }} </a></label>
+          
+          </div>
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left  form-check">
         <h2>База: Разовый платеж (внедрение):  </h2> <br>
-        Действует при указанном наборе опций  {{ prettily(countFun()) }} 
+        Действует при указанном наборе опций  {{ prettily(countIntegration()) }} 
         </div>
       </div>
       <h1 class="col-md-12 " align="center" > Ежемесячный платеж <a> {{ prettily(monthlySumFun()) }} </a></h1>
@@ -216,7 +246,6 @@ export default {
   data() {
     
     return {
-      test: "345",
       answers: [
         {
           id: "0",
@@ -263,53 +292,8 @@ export default {
               text: "",
               active: false,
               isLabel: false,
-              msg: [],
             },
           ],
-          /*test: [
-            {
-              id: 0,
-              text: "модель 0",
-              active: false,
-            },
-            {
-              id: 1,
-              text: "модель 1",
-              active: false,
-            },
-            {
-              id: 2,
-              text: "модель 2",
-              active: false,
-            },
-            {
-              id: 3,
-              text: "Свой вариант",
-              active: true,
-              msg: [],
-            },
-            {
-              id: 0,
-              text: "модель 0",
-              active: false,
-            },
-            {
-              id: 1,
-              text: "модель 1",
-              active: false,
-            },
-            {
-              id: 2,
-              text: "модель 2",
-              active: false,
-            },
-            {
-              id: 3,
-              text: "Свой вариант",
-              active: true,
-              msg: [],
-            },
-          ],*/
           subAnswerPrise: 15000,
           
           
@@ -365,12 +349,37 @@ export default {
             },
             {
               id: 1,
-              prise: 15000,
+              prise: 0,
               text:"За каждую дополнительную интеграцию",
             },
             
           ],
-          subAnswers: [],
+          subAnswers: [
+             {
+              id: 0,
+              text: "модель 0",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 1,
+              text: "модель 1",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 2,
+              text: "модель 2",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 3,
+              text: "",
+              active: false,
+              isLabel: false,
+            },
+          ],
           subAnswerPrise: 15000,
           prise:[],
         },
@@ -385,12 +394,37 @@ export default {
             },
             {
               id: 1,
-              prise: 1000,
+              prise: 0,
               text: "За каждую дополнительную роль",
             },
             
           ],
-          subAnswers: [],
+          subAnswers: [
+             {
+              id: 0,
+              text: "модель 0",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 1,
+              text: "модель 1",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 2,
+              text: "модель 2",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 3,
+              text: "",
+              active: false,
+              isLabel: false,
+            },
+          ],
           subAnswerPrise: 1000,
           
         },
@@ -405,12 +439,37 @@ export default {
             },
             {
               id: 1,
-              prise: 15000,
+              prise: 0,
               text: "За каждую дополнительную диаграмму",
             },
             
           ],
-          subAnswers: [],
+          subAnswers: [
+             {
+              id: 0,
+              text: "модель 0",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 1,
+              text: "модель 1",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 2,
+              text: "модель 2",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 3,
+              text: "",
+              active: false,
+              isLabel: false,
+            },
+          ],
           subAnswerPrise: 15000,
           
         },
@@ -425,12 +484,37 @@ export default {
             },
             {
               id: 1,
-              prise: 5000,
+              prise: 0,
               text: "За каждую дополнительную автоматику",
             },
             
           ],
-          subAnswers: [],
+          subAnswers: [
+             {
+              id: 0,
+              text: "модель 0",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 1,
+              text: "модель 1",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 2,
+              text: "модель 2",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 3,
+              text: "",
+              active: false,
+              isLabel: false,
+            },
+          ],
           subAnswerPrise: 5000,
           
         },
@@ -446,12 +530,37 @@ export default {
             },
             {
               id: 1,
-              prise: 20000,
+              prise: 0,
               text:"За каждый источник, откуда данные необходимо перенести автоматически",
             },
             
           ],
-          subAnswers: [],
+          subAnswers: [
+             {
+              id: 0,
+              text: "модель 0",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 1,
+              text: "модель 1",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 2,
+              text: "модель 2",
+              active: false,
+              isLabel: true,
+            },
+            {
+              id: 3,
+              text: "",
+              active: false,
+              isLabel: false,
+            },
+          ],
           subAnswerPrise: 20000,
           
         },
@@ -482,13 +591,14 @@ export default {
           placeholder: "User's e-mail address",
         },   
         ]
-    },
-    msg: [], 
+    }, 
       
     }
   },
 
   methods: {    
+    
+// counting the price of clicked checkboxes and radio buttons
     answerCost: function (idAnswer) {
       var sum = 0;
       var answer = this.answers[idAnswer];
@@ -502,48 +612,34 @@ export default {
           }
         }
       }
-
       return sum;
     } ,                                         
-// для подсчета нажатых кнопок и красивого вывода
-    //subAnFun: function (iAnswer) {    
-     // var sum = 0;
-     // var subAnswers = this.answers[iAnswer].subAnswers;
-     // for (var iSubAns in subAnswers) { 
-     //   if (subAnswers[iSubAns].active = true) {
-      //    sum = sum + subAnswers[iSubAns].prise
-      //  }                        
-                               
-       // return sum;                                    
-     // }
-   // },
-// СПОСОБ ПОСЧИТАТЬ ВСЕ ВЫБРАННЫЕ КНОПКИ: беги по массиву и скадывай все цифорки 
-    countFun: function () {
- 
+
+// counting for a one-time payment
+    countIntegration: function () {
       var sum = 0;
-      //this.subAnFun(idAnswer);
-      for (var idAnswer in this.answers) {                
-        var idPicked = this.answers[idAnswer].picked; 
-        if (this.answers[idAnswer].picked == this.answers[idAnswer].pickedInfo.length - 1) {                             
-          let peuPrise =  (this.answers[idAnswer].subAnswers.length * this.answers[idAnswer].subAnswerPrise);
-          sum = sum + peuPrise;                                  
-        } 
-        else {
-          let peuPrise = this.answers[idAnswer].pickedInfo[idPicked].prise;
-          sum = sum + peuPrise;
-        }
+      for (var i in this.answers) {
+        sum = sum + this.answerCost(i)
+        
       }
-      return sum;
+      return sum
     },
+
+// makes a beautiful price conclusion
     prettily: function ( num ) {
       var prettilyNum = "";
       if ( num == 0 ) {
         prettilyNum = "Бесплатно"
       } else {
+      
+        num = num.split("").reverse().join("")
         prettilyNum = " +" + num + " p."
+        alert ( num )
       }
       return prettilyNum;
     },
+
+// creates infinite checkboxes and tracks their clicks
     endlessField: function (iAnswer, iSubAns) {
       var subAnswers = this.answers[iAnswer].subAnswers;
       var lastId = subAnswers.length - 1
@@ -563,9 +659,10 @@ export default {
       } else if (subAnswers[iSubAns].text.length == 0) {
         subAnswers[iSubAns].active = false
         subAnswers.splice(iSubAns, 1); 
-      } 
-      
+      }  
     },
+
+// sets the price for the number of users
     maintFun: function() {
       var sum = 0;
       if(this.users.maintenance >= 1 && this.users.maintenance <= 2000000000){
@@ -574,8 +671,7 @@ export default {
       return sum;
     },
    
-   //пользователь вписывает число от 1 до 2000, если это число от 1 до 5 то умножь его на 500 и выдай результат
-   
+// sets the price for technical support
     userFun: function() {
       var sum = 0;
       if(this.users.user >= 0 && this.users.user <= 5){
@@ -592,6 +688,7 @@ export default {
       return sum;
     },
 
+// calculating the monthly payment
     monthlySumFun: function() {
       let sum = this.maintFun () + this.userFun ();
       return sum
