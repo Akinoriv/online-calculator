@@ -254,7 +254,7 @@ export default {
           pickedInfo: [
             {
               id: 0,
-              prise: 0,
+              prise: 10,
               text: "Нет различий с нашей коробкой",
             },
             {
@@ -628,13 +628,26 @@ export default {
 // makes a beautiful price conclusion
     prettily: function ( num ) {
       var prettilyNum = "";
+
       if ( num == 0 ) {
         prettilyNum = "Бесплатно"
       } else {
-      
-        num = num.split("").reverse().join("")
-        prettilyNum = " +" + num + " p."
-        alert ( num )
+        var strRevNum = (num + "").split("").reverse().join("")
+        var i = 3
+        while ( i <= strRevNum.length ) {
+          prettilyNum = prettilyNum + " " + strRevNum.slice(i - 3, i)
+          
+
+          //prettilyNum = strRevNum
+          
+          i = i + 3
+        }
+        if (strRevNum.slice(i - 3) != ""){
+          prettilyNum = prettilyNum + " " + strRevNum.slice(i - 3)
+        }
+        prettilyNum = (prettilyNum + "").split("").reverse().join("")
+        prettilyNum = " +" + prettilyNum + " p."
+        
       }
       return prettilyNum;
     },
