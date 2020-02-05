@@ -1,11 +1,12 @@
 <template>
+<div>
   <div class="container">
-    <div class="row">
-      <h1 class="col-md-12 " align="center" > Разовый платеж (Внедрение) <a>  {{ prettily(countIntegration()) }} </a> </h1>
+    <div class="row justify-content-center">
+      <h1 class="col-md-12"  align="start" > Разовый платеж </h1>
       <div  class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
-        <div class="text-left form-check">
-          <h2> {{ answers[0].text }} {{ prettily(answerCost(0)) }}  </h2> 
+          <h2  align="start"> {{ answers[0].text }} {{ prettily(answerCost(0)) }}  </h2> 
           <br>
+          <div class="text-left form-check">
           <input type="radio" class="form-check-input" id="A1" value="0" v-model="answers[0].picked">
           <label for="A1">{{ answers[0].pickedInfo[0].text }} <a> {{ prettily(answers[0].pickedInfo[0].prise) }} </a> </label> 
           <br>
@@ -30,6 +31,7 @@
               v-model="answers[0].subAnswers[i].text"
               placeholder="Свой вариант"
               v-on:input="endlessField(0, i)"
+              class="color long"
             > 
             <label v-else type="text"> {{ answers[0].subAnswers[i].text }} </label>
             <label><a> {{ prettily(answers[0].subAnswerPrise) }} </a></label>
@@ -38,8 +40,8 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
+        <h2 align="start"> {{ answers[1].text }} {{ prettily(answerCost(1)) }} </h2>
         <div class="text-left form-check">
-          <h2> {{ answers[1].text }} {{ prettily(answerCost(1)) }} </h2>
           <br>
           <input type="radio" id="B0" class="form-check-input" value="0" v-model="answers[1].picked">
           <label for="B0">{{ answers[1].pickedInfo[0].text }} <a>{{ prettily(answers[1].pickedInfo[0].prise) }} </a></label>
@@ -60,9 +62,9 @@
           <label for="B5">{{ answers[1].pickedInfo[5].text }} <a>{{ prettily(answers[1].pickedInfo[5].prise) }} </a></label>
         </div>
       </div>
-      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
-        <div class="text-left form-check"> 
-          <h2> {{answers[2].text}}  {{ prettily(answerCost(2)) }} </h2>
+      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
+        <h2  align="start"> {{answers[2].text}}  {{ prettily(answerCost(2)) }} </h2>
+        <div class="text-left form-check">
           <br>
           <input type="radio" id="K1" class="form-check-input" value="0" v-model="answers[2].picked">
           <label for="K1"> {{answers[2].pickedInfo[0].text}} <a> {{ prettily(answers[2].pickedInfo[0].prise) }} </a></label> 
@@ -84,6 +86,7 @@
               v-model="answers[2].subAnswers[i].text"
               placeholder="Свой вариант"
               v-on:input="endlessField(2, i)"
+              class="color long"
             > 
             <label v-else type="text"> {{ answers[2].subAnswers[i].text }} </label>
             <label><a> {{ prettily(answers[2].subAnswerPrise) }} </a></label>
@@ -92,8 +95,8 @@
           </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
+        <h2>  {{answers[3].text}}  {{ prettily(answerCost(3)) }} </h2>
         <div class="text-left form-check">
-          <h2>  {{answers[3].text}}  {{ prettily(answerCost(3)) }} </h2>
           <br>
           <input type="radio" id="K3" class="form-check-input" value="0" v-model="answers[3].picked">
           <label for="K3"> {{answers[3].pickedInfo[0].text}} <a> {{ prettily(answers[3].pickedInfo[0].prise) }} </a></label> 
@@ -115,6 +118,7 @@
               v-model="answers[3].subAnswers[i].text"
               placeholder="Свой вариант"
               v-on:input="endlessField(3, i)"
+              class="color long"
             > 
             <label v-else type="text"> {{ answers[3].subAnswers[i].text }} </label>
             <label><a> {{ prettily(answers[3].subAnswerPrise) }} </a></label>
@@ -123,8 +127,8 @@
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
+        <h2  align="start"> {{answers[4].text}} {{ prettily(answerCost(4)) }} </h2>
         <div class="text-left form-check">
-          <h2> {{answers[4].text}} {{ prettily(answerCost(4)) }} </h2>
           <br>
           <input type="radio" id="D1" class="form-check-input" value="0" v-model="answers[4].picked">
           <label for="D1"> {{answers[4].pickedInfo[0].text}} <a> {{ prettily(answers[4].pickedInfo[0].prise) }} </a></label> 
@@ -146,6 +150,7 @@
               v-model="answers[4].subAnswers[i].text"
               placeholder="Свой вариант"
               v-on:input="endlessField(4, i)"
+              class="color long"
             > 
             <label v-else type="text"> {{ answers[4].subAnswers[i].text }} </label>
             <label><a> {{ prettily(answers[4].subAnswerPrise) }} </a></label>
@@ -154,8 +159,8 @@
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
+        <h2  align="start"> {{answers[5].text}}  {{ prettily(answerCost(5)) }} </h2>
         <div class="text-left form-check">
-          <h2> {{answers[5].text}}  {{ prettily(answerCost(5)) }} </h2>
           <br>
           <input type="radio" id="C1" class="form-check-input" value="0" v-model="answers[5].picked">
           <label for="C1">{{answers[5].pickedInfo[1].text}} <a> {{ prettily(answers[5].pickedInfo[0].prise) }} </a></label> 
@@ -177,6 +182,7 @@
               v-model="answers[5].subAnswers[i].text"
               placeholder="Свой вариант"
               v-on:input="endlessField(5, i)"
+              class="color long"
             > 
             <label v-else type="text"> {{ answers[5].subAnswers[i].text }} </label>
             <label><a> {{ prettily(answers[5].subAnswerPrise) }} </a></label>
@@ -185,8 +191,8 @@
         </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" > 
+        <h2  align="start"> {{answers[6].text}}  {{ prettily(answerCost(6)) }} </h2>
         <div class="text-left form-check">
-          <h2> {{answers[6].text}}  {{ prettily(answerCost(6)) }} </h2>
           <br>
           <input type="radio" id="P1" class="form-check-input" value="0" v-model="answers[6].picked">
           <label for="P1"> {{answers[6].pickedInfo[0].text}} <a> {{ prettily(answers[6].pickedInfo[0].prise) }} </a></label> 
@@ -208,6 +214,7 @@
               v-model="answers[6].subAnswers[i].text"
               placeholder="Свой вариант"
               v-on:input="endlessField(6, i)"
+              class="color long"
             > 
             <label v-else type="text"> {{ answers[6].subAnswers[i].text }} </label>
             <label><a> {{ prettily(answers[6].subAnswerPrise) }} </a></label>
@@ -217,27 +224,86 @@
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
         <div class="text-left  form-check">
-        <h2>База: Разовый платеж (внедрение):  </h2> <br>
-        Действует при указанном наборе опций  {{ prettily(countIntegration()) }} 
+        <h2>Разовый платеж при указанном наборе опций:  <a>  {{ prettily(countIntegration()) }} </a></h2> //сделать полу рамку для читабельности
         </div>
       </div>
-      <h1 class="col-md-12 " align="center" > Ежемесячный платеж <a> {{ prettily(monthlySumFun()) }} </a></h1>
-      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
-        <div class="text-left form-check">
-          <h2> {{ users[0].text0 }}  </h2> 
-          <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users.user"> 
-          <label for="E0"><a> {{prettily(userFun())}} </a></label>
+
+      <div class="row">
+        <h1 class="col-md-12" align="start"> Ежемесячный платеж </h1>
+        <div class="col-lg-6 col-md-12"  >
+          <div class="text-left form-check">
+            <h2> {{ users[0].text0 }}  </h2> 
+            <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users.user" class="color long"> 
+            <label for="E0"><a> {{prettily(userFun())}} </a></label>
+            <br>
+            <h2> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12"  >
+          <div class="text-left form-check">
+            <h2> {{ users[0].text1 }}  </h2> 
+            <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users.maintenance" class="color long"> 
+            <label for="E1"><a> {{ prettily(maintFun()) }}  </a></label>
+          </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
-        <div class="text-left form-check">
-          <h2> {{ users[0].text1 }}  </h2> 
-          <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users.maintenance"> 
-          <label for="E1"><a> {{ prettily(maintFun()) }}  </a></label>
+      
+      <div class="row justify-content-center">
+        <h1 class="col-md-6"> ПОПРОБОВАТЬ </h1>
+        <div class="form-group col-md-8 message" >
+          <p for="I0" class="right"> Имя </p>
+          <input class="form-control color" type="text"  id="I0" placeholder="Вироничка" value="forma.name"> 
+          <br> 
+          <p for="T0" class="text-left"> Телефон или никнейм </p>
+          <input class="form-control color"  type="tel" placeholder="+7 (495) 374-88-20" id="T0" >
+          <br>
+          <p for="F0" align="start"> Как с вами связаться? </p>
+          <select class="form-control color" id="F0" value="forma.select">
+            <option> Выберите вариант </option>
+            <option> WhatsApp </option>
+            <option> Telegram </option>
+            <option> Instagram </option>
+            <option> Facebook </option>
+          </select>
+          <br>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" align="start" for="gridCheck" style="font-size: 90%"> Я даю свое <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a></label>
+        </div>
+        <button type="submit" class="button"> Отправить </button>
         </div>
       </div>
-      </div>
+    </div>
   </div>
+  <div class="row info" >
+    <div class="col-md-6"> 
+      <h3><b>КОНТАКТЫ</b>
+      <br>
+      <a href="tel:+7(495)374-88-20">+7 (495) 374-88-20 </a>
+      <br>
+      <a href="mailto:sales@myprocessx.com"> sales@myprocessx.com </a>
+      <br>
+      ИП Маркин Кирилл Вадимович
+      <br>
+      ИНН: 502211411399
+      <br>
+      ОГРНИП: 311502224100049
+      <br>
+      г. Москва
+      </h3>
+    </div>
+    <div class="col-md-6"> 
+      <h3><b> ДОПОЛНИТЕЛЬНО </b>
+      <br>
+      <a href="https://www.dropbox.com/s/49k3xhjetiljdyk/%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.pdf?dl=0"> Скачать в pdf </a>
+      <br>
+      Документация
+      <br>
+      <a href="https://wiki.vabl.io/">wiki.myprocessx.com </a>
+      </h3>
+    </div>
+  </div>
+</div>
 
 </template>
 
@@ -254,7 +320,7 @@ export default {
           pickedInfo: [
             {
               id: 0,
-              prise: 10,
+              prise: 0,
               text: "Нет различий с нашей коробкой",
             },
             {
@@ -429,7 +495,7 @@ export default {
           
         },
         {
-          text: "Дополнительные отчеты и диаграммы : ",
+          text: "Дополнительные отчеты и диаграммы: ",
           picked: 0,
           pickedInfo: [
             {
@@ -567,31 +633,21 @@ export default {
       ],
       users: [
         {
-        id: "7",
-        text0: "Количество пользователей: ", 
-        text1: "Техническая поддержка",
-        user: [],
-        maintenance: [],
+          id: "7",
+          text0: "Количество пользователей: ", 
+          text1: "Техническая поддержка",
+          user: [],
+          maintenance: [],
         }
       ],
-      schema: {
-      fields: [
+      forma: [
         {
-          type: "input",
-          inputType: "text",
-          label: "Name",
-          model: "name",
-         
-        },
-        {
-          type: "input",
-          inputType: "email",
-          label: "E-mail",
-          model: "email",
-          placeholder: "User's e-mail address",
-        },   
-        ]
-    }, 
+          name:"",
+          number: "",
+          select:"",
+        }
+      ]
+     
       
     }
   },
@@ -716,12 +772,19 @@ export default {
   margin: 0 10px;
 }-->
 <style scoped>
+h1 {
+  font-size: 200%;
+ 
+
+}
+
 h2 {
   font-size: 150% 
 }
 
 h3 {
-  margin: 40px 0 0;
+  font-size: 130%;
+  color: #ffffff;
 }
 ul {
   list-style-type: none;
@@ -732,6 +795,61 @@ a {
   text-align: right;
   color: #42b983;
 }
+
+p {
+  text-align: left;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+label {
+  font-size: 120%;
+  padding-left: 2%;
+}
+.long {
+  width: 60%;
+}
+.color {
+  border-radius: 0px !important ;
+  border-color:white white rgb(10, 10, 10) !important;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px !important; 
+}
+
+.button {
+  width: 50%;
+  height: 30px;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+  position: relative;
+  letter-spacing: 2px;
+  background: #1a1a1a
+  }
+
+.info {
+  background: #232323;
+  padding-left: 20%;
+  padding-right: 0;
+  padding-top: 16px;
+  padding-bottom: 10px;
+  text-align: left;
+  margin-top: 10px;
+
+}
+
+.message {
+  border: #1a1a1a;
+  background: rgb(255, 255, 255);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 </style>
 
 
