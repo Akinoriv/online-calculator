@@ -252,7 +252,7 @@
         <h1 class="col-md-6"> ПОПРОБОВАТЬ </h1>
         <div class="form-group col-md-8 message" >
           <p for="I0" class="right"> Имя </p>
-          <input class="form-control color" type="text"  id="I0" placeholder="Вироничка" value="forma.name"> 
+          <input class="form-control color" type="text"  id="I0" placeholder="Вироничка" v-model="forma.name"> 
           <br> 
           <p for="T0" class="text-left"> Телефон или никнейм </p>
           <input class="form-control color"  type="tel" placeholder="+7 (495) 374-88-20" id="T0" >
@@ -270,7 +270,7 @@
             <input class="form-check-input" type="checkbox" id="gridCheck">
             <label class="form-check-label" align="start" for="gridCheck" style="font-size: 90%"> Я даю свое <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a></label>
         </div>
-        <button type="submit" class="button"> Отправить </button>
+        <button type="submit" class="button" v-on:click="saveJS"> Отправить </button>
         </div>
       </div>
     </div>
@@ -308,6 +308,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     
@@ -652,7 +654,8 @@ export default {
     }
   },
 
-  methods: {    
+  methods: {  
+
     
 // counting the price of clicked checkboxes and radio buttons
     answerCost: function (idAnswer) {
@@ -758,9 +761,24 @@ export default {
     },
 
 // calculating the monthly payment
+
     monthlySumFun: function() {
       let sum = this.maintFun () + this.userFun ();
       return sum
+    },
+// сохранить джейсон при нажатии 
+    async saveJS() {
+      axios({
+        url: 'http://localhost:3000/api/records',
+        method: 'post',
+        data: JSON.stringify(
+          {
+            'answers': this.answers,
+            'forma': this.forma,
+            'users': this.users,
+          }
+        )
+      });
     }
   }
 }
