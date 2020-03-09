@@ -1,4 +1,4 @@
-# hello-world
+# README
 
 ## Project setup
 ```
@@ -9,6 +9,13 @@ npm install
 ```
 npm run serve
 ```
+### Запустить мозг 
+```
+node server/server.js
+```
+
+
+
 
 ### Compiles and minifies for production
 ```
@@ -22,3 +29,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+

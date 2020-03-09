@@ -233,7 +233,7 @@
         <div class="col-lg-6 col-md-12"  >
           <div class="text-left form-check">
             <h2> {{ users[0].text0 }}  </h2> 
-            <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users.user" class="color long"> 
+            <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users[0].user" class="color long"> 
             <label for="E0"><a> {{prettily(userFun())}} </a></label>
             <br>
             <h2> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
@@ -242,8 +242,8 @@
         <div class="col-lg-6 col-md-12"  >
           <div class="text-left form-check">
             <h2> {{ users[0].text1 }}  </h2> 
-            <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users.maintenance" class="color long"> 
-            <label for="E1"><a> {{ prettily(maintFun()) }}  </a></label>
+            <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users[0].maintenance" class="color long"> 
+            <label for="E1"><a> {{ prettily(maintFun()) }} {{ JSON.parse(JSON.stringify({1: "kazaboza",})) }}  </a></label>
           </div>
         </div>
       </div>
@@ -252,13 +252,13 @@
         <h1 class="col-md-6"> ПОПРОБОВАТЬ </h1>
         <div class="form-group col-md-8 message" >
           <p for="I0" class="right"> Имя </p>
-          <input class="form-control color" type="text"  id="I0" placeholder="Вироничка" v-model="forma.name"> 
+          <input class="form-control color" type="text"  id="I0" placeholder="Вироничка" v-model="forma[0].name"> 
           <br> 
           <p for="T0" class="text-left"> Телефон или никнейм </p>
-          <input class="form-control color"  type="tel" placeholder="+7 (495) 374-88-20" id="T0" >
+          <input class="form-control color"  type="tel" placeholder="+7 (495) 374-88-20" id="T0" v-model="forma[0].number">
           <br>
           <p for="F0" align="start"> Как с вами связаться? </p>
-          <select class="form-control color" id="F0" value="forma.select">
+          <select class="form-control color" id="F0" value="forma.select" v-model="forma[0].select">
             <option> Выберите вариант </option>
             <option> WhatsApp </option>
             <option> Telegram </option>
@@ -308,7 +308,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
@@ -694,11 +694,7 @@ export default {
         var strRevNum = (num + "").split("").reverse().join("")
         var i = 3
         while ( i <= strRevNum.length ) {
-          prettilyNum = prettilyNum + " " + strRevNum.slice(i - 3, i)
-          
-
-          //prettilyNum = strRevNum
-          
+          prettilyNum = prettilyNum + " " + strRevNum.slice(i - 3, i) //prettilyNum = strRevNum
           i = i + 3
         }
         if (strRevNum.slice(i - 3) != ""){
@@ -737,8 +733,8 @@ export default {
 // sets the price for the number of users
     maintFun: function() {
       var sum = 0;
-      if(this.users.maintenance >= 1 && this.users.maintenance <= 2000000000){
-        sum = this.users.maintenance * 500;
+      if(this.users[0].maintenance >= 1 && this.users[0].maintenance <= 2000000000){
+        sum = this.users[0].maintenance * 500;
       }
       return sum;
     },
@@ -746,16 +742,16 @@ export default {
 // sets the price for technical support
     userFun: function() {
       var sum = 0;
-      if(this.users.user >= 0 && this.users.user <= 5){
+      if(this.users[0].user >= 0 && this.users[0].user <= 5){
         sum = 0
-      } else if(this.users.user >= 6 && this.users.user <= 10){
-        sum = this.users.user * 500;
-      } else if(this.users.user >= 11 && this.users.user <= 100){
-        sum = this.users.user * 700;
-      } else if(this.users.user >= 101 && this.users.user <= 500){
-        sum = this.users.user * 600;
-      } else if(this.users.user >= 501 && this.users.user <= 20000000000){
-        sum = this.users.user * 400;
+      } else if(this.users[0].user >= 6 && this.users[0].user <= 10){
+        sum = this.users[0].user * 500;
+      } else if(this.users[0].user >= 11 && this.users[0].user <= 100){
+        sum = this.users[0].user * 700;
+      } else if(this.users[0].user >= 101 && this.users[0].user <= 500){
+        sum = this.users[0].user * 600;
+      } else if(this.users[0].user >= 501 && this.users[0].user <= 20000000000){
+        sum = this.users[0].user * 400;
       }
       return sum;
     },
@@ -767,19 +763,134 @@ export default {
       return sum
     },
 // сохранить джейсон при нажатии 
-    async saveJS() {
+  async saveJS () {
+
+ // работает   
+
+    // var url = "http://localhost:3000/api/records"
+    // var data = {
+    //   answers: this.answers,
+    //   users: this.users,
+    //   forma: this.forma,
+    //   }
+
+    //  fetch(url, {
+    //     method: "POST", // *GET, POST, PUT, DELETE, etc.
+    //     mode: "no-cors", // no-cors, cors, *same-origin
+    //     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    //     credentials: "same-origin", // include, *same-origin, omit
+    //     headers: {
+    //       // "Accept": "application/json", 
+    //       // "Content-Type": "application/x-www-form-urlencoded; charset=utf-8", // будет отправлять не красиво, но в файлик запишется 
+    //       // "Content-Type": "text/plain; charset=utf-8",  // будет отправлять красиво, но мозги не смогут обработать 
+    //       // "Accept": "text/plain; charset=utf-8",
+          
+    //     },
+    //     redirect: "follow", // manual, *follow, error
+    //     referrer: "no-referrer", // no-referrer, *client
+    //     body:JSON.stringify(data), // тип данных в body должен соответвовать значению заголовка "Content-Type"
+    //   })
+    //   .then(response => response.json()); 
+     
+
+    
+// Работает 
+
       axios({
-        url: 'http://localhost:3000/api/records',
-        method: 'post',
+        url: "http://localhost:3000/api/records",
+        method: "post",
+        // headers: {
+        //   "Accept": "application/json", 
+        //   "Content-Type": "text/plain; charset=utf-8",  
+        // },
         data: JSON.stringify(
           {
-            'answers': this.answers,
-            'forma': this.forma,
-            'users': this.users,
+            "answers": this.answers,
+            "forma": this.forma,
+            "users": this.users,
           }
         )
       });
-    }
+      
+
+ /* не работает
+      var qs = require("qs");
+      //axios.post("/foo", qs.stringify({ "bar": 123 });
+      axios.post("http://192.168.0.199:3000/api/records", qs.stringify(
+        {
+          "answers": this.answers,
+          "forma": this.forma,
+          "users": this.users,
+        }
+        //{1: "kazaboza"}
+      ))
+      */ 
+
+/*
+// не работает
+      axios({
+        url: "http://localhost:3000/api/records",
+        method: "post",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+          data
+        ),
+        data: {},
+      });
+      
+*/
+/*
+     
+      const rawResponse = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          //"Access-Control-Allow-Origin": "*",
+          //"Access-Control-Allow-Methods": "POST",
+          //"Access-Control-Allow-Headers": "Authorization, Content-Type",
+        },
+        body: JSON.stringify(
+          {
+            "n": "kazaboza",
+          }
+          
+        )
+      })
+      const content = await rawResponse.json();
+      alert(content);
+      */
+
+      /*
+      const configHeaders = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      };
+      */
+
+      /*
+      {
+        "answers": this.answers,
+        "forma": this.forma,
+        "users": this.users,
+      }
+      */
+
+      //.then(res => {
+      //  alert(res)
+      //})
+      //.then(res => {
+      //  if (res.ok) {
+      //    alert ("Данные сохранены")
+      //  } else {
+      //    alert ("Ошибка сохранения!");
+      //  }
+      //})
+    },
   }
 }
 
