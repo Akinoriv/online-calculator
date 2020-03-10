@@ -803,13 +803,12 @@ export default {
         //   "Accept": "application/json", 
         //   "Content-Type": "text/plain; charset=utf-8",  
         // },
-        data: JSON.stringify(
+        data:
           {
             "answers": this.answers,
             "forma": this.forma,
             "users": this.users,
           }
-        )
       });
       
 
