@@ -765,44 +765,11 @@ export default {
 // сохранить джейсон при нажатии 
   async saveJS () {
 
- // работает   
-
-    // var url = "http://localhost:3000/api/records"
-    // var data = {
-    //   answers: this.answers,
-    //   users: this.users,
-    //   forma: this.forma,
-    //   }
-
-    //  fetch(url, {
-    //     method: "POST", // *GET, POST, PUT, DELETE, etc.
-    //     mode: "no-cors", // no-cors, cors, *same-origin
-    //     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    //     credentials: "same-origin", // include, *same-origin, omit
-    //     headers: {
-    //       // "Accept": "application/json", 
-    //       // "Content-Type": "application/x-www-form-urlencoded; charset=utf-8", // будет отправлять не красиво, но в файлик запишется 
-    //       // "Content-Type": "text/plain; charset=utf-8",  // будет отправлять красиво, но мозги не смогут обработать 
-    //       // "Accept": "text/plain; charset=utf-8",
-          
-    //     },
-    //     redirect: "follow", // manual, *follow, error
-    //     referrer: "no-referrer", // no-referrer, *client
-    //     body:JSON.stringify(data), // тип данных в body должен соответвовать значению заголовка "Content-Type"
-    //   })
-    //   .then(response => response.json()); 
-     
-
-    
 // Работает 
 
       axios({
         url: "http://localhost:3000/api/records",
         method: "post",
-        // headers: {
-        //   "Accept": "application/json", 
-        //   "Content-Type": "text/plain; charset=utf-8",  
-        // },
         data:
           {
             "answers": this.answers,
@@ -810,85 +777,6 @@ export default {
             "users": this.users,
           }
       });
-      
-
- /* не работает
-      var qs = require("qs");
-      //axios.post("/foo", qs.stringify({ "bar": 123 });
-      axios.post("http://192.168.0.199:3000/api/records", qs.stringify(
-        {
-          "answers": this.answers,
-          "forma": this.forma,
-          "users": this.users,
-        }
-        //{1: "kazaboza"}
-      ))
-      */ 
-
-/*
-// не работает
-      axios({
-        url: "http://localhost:3000/api/records",
-        method: "post",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(
-          data
-        ),
-        data: {},
-      });
-      
-*/
-/*
-     
-      const rawResponse = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          //"Access-Control-Allow-Origin": "*",
-          //"Access-Control-Allow-Methods": "POST",
-          //"Access-Control-Allow-Headers": "Authorization, Content-Type",
-        },
-        body: JSON.stringify(
-          {
-            "n": "kazaboza",
-          }
-          
-        )
-      })
-      const content = await rawResponse.json();
-      alert(content);
-      */
-
-      /*
-      const configHeaders = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-      };
-      */
-
-      /*
-      {
-        "answers": this.answers,
-        "forma": this.forma,
-        "users": this.users,
-      }
-      */
-
-      //.then(res => {
-      //  alert(res)
-      //})
-      //.then(res => {
-      //  if (res.ok) {
-      //    alert ("Данные сохранены")
-      //  } else {
-      //    alert ("Ошибка сохранения!");
-      //  }
-      //})
     },
   }
 }
