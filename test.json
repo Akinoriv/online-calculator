@@ -306,13 +306,6 @@
       "subAnswerPrise": 20000
     }
   ],
-  "forma": [
-    {
-      "name": "",
-      "number": "",
-      "select": ""
-    }
-  ],
   "users": [
     {
       "id": "7",
@@ -320,6 +313,14 @@
       "text1": "Техническая поддержка",
       "user": [],
       "maintenance": []
+    }
+  ],
+  "forma": [
+    {
+      "name": "dfghj",
+      "number": "+79858154423",
+      "select": "WhatsApp",
+      "check": true
     }
   ]
 }

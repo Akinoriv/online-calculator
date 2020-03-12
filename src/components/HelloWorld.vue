@@ -95,7 +95,7 @@
           </div> 
       </div>
       <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
-        <h2>  {{answers[3].text}}  {{ prettily(answerCost(3)) }} </h2>
+        <h2 align="start">  {{answers[3].text}}  {{ prettily(answerCost(3)) }} </h2>
         <div class="text-left form-check">
           <br>
           <input type="radio" id="K3" class="form-check-input" value="0" v-model="answers[3].picked">
@@ -229,37 +229,39 @@
       </div>
 
       <div class="row">
-        <h1 class="col-md-12" align="start"> Ежемесячный платеж </h1>
+        <h1 class="col-md-12" > Ежемесячный платеж </h1>
         <div class="col-lg-6 col-md-12"  >
           <div class="text-left form-check">
-            <h2> {{ users[0].text0 }}  </h2> 
+            <h2 align="start"> {{ users[0].text0 }}  </h2> 
             <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users[0].user" class="color long"> 
             <label for="E0"><a> {{prettily(userFun())}} </a></label>
-            <br>
-            <h2> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
           </div>
         </div>
         <div class="col-lg-6 col-md-12"  >
           <div class="text-left form-check">
             <h2> {{ users[0].text1 }}  </h2> 
             <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users[0].maintenance" class="color long"> 
-            <label for="E1"><a> {{ prettily(maintFun()) }} {{ JSON.parse(JSON.stringify({1: "kazaboza",})) }}  </a></label>
+            <label for="E1"><a> {{ prettily(maintFun()) }} </a></label>
           </div>
         </div>
+        <h2> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
       </div>
       
       <div class="row justify-content-center">
         <h1 class="col-md-6"> ПОПРОБОВАТЬ </h1>
-        <div class="form-group col-md-8 message" >
+         
+        <div class="form-group col-md-8 message">
           <p for="I0" class="right"> Имя </p>
-          <input class="form-control color" type="text"  id="I0" placeholder="Вироничка" v-model="forma[0].name"> 
+          <input required="true" class="form-control color" type="text"  id="I0" placeholder="Вироничка" v-model="forma[0].name" > 
           <br> 
           <p for="T0" class="text-left"> Телефон или никнейм </p>
           <input class="form-control color"  type="tel" placeholder="+7 (495) 374-88-20" id="T0" v-model="forma[0].number">
           <br>
           <p for="F0" align="start"> Как с вами связаться? </p>
-          <select class="form-control color" id="F0" value="forma.select" v-model="forma[0].select">
-            <option> Выберите вариант </option>
+          <select class="form-control color" id="F0"  value="forma.select" placeholder="Вироничка" v-model="forma[0].select">
+            <option disabled value="">Выберите вариант</option>
+            <option> Телефон </option>
+            <option> Viber </option>
             <option> WhatsApp </option>
             <option> Telegram </option>
             <option> Instagram </option>
@@ -267,10 +269,11 @@
           </select>
           <br>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" align="start" for="gridCheck" style="font-size: 90%"> Я даю свое <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a></label>
+            <input class="form-check-input"  v-on:click="true" type="checkbox" id="gridCheck" v-model="forma[0].check">
+            <label class="form-check-label"  align="start" for="gridCheck" style="font-size: 90%"> Я даю свое <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a></label>
         </div>
-        <button type="submit" class="button" v-on:click="saveJS"> Отправить </button>
+        <button type="submit" class="button" v-on:click="saveJS" v-if="checkForm()==false" disabled> Отправить </button>
+        <button type="submit" class="button" v-on:click="saveJS" v-if="checkForm()==true"> Отправить </button>
         </div>
       </div>
     </div>
@@ -647,6 +650,7 @@ export default {
           name:"",
           number: "",
           select:"",
+          check:""
         }
       ]
      
@@ -757,27 +761,38 @@ export default {
     },
 
 // calculating the monthly payment
-
     monthlySumFun: function() {
       let sum = this.maintFun () + this.userFun ();
       return sum
     },
+
+// проверка формы на заполнение всех форм
+    checkForm: function() {
+      var check 
+          if (this.forma[0].name != "" && this.forma[0].number != "" && this.forma[0].select != "" && this.forma[0].check == true) {
+            check = true
+          } else {
+            check = false
+          }
+          return check 
+        },
+  
+  
+
 // сохранить джейсон при нажатии 
-  async saveJS () {
-
-// Работает 
-
+    async saveJS () {
       axios({
         url: "http://localhost:3000/api/records",
         method: "post",
         data:
           {
             "answers": this.answers,
-            "forma": this.forma,
             "users": this.users,
+            "forma": this.forma,
           }
       });
     },
+
   }
 }
 
