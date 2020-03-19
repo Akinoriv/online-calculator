@@ -222,30 +222,33 @@
           </div>
         </div> 
       </div>
-      <div class="col-lg-6 col-md-12" style="padding-top: 15px; padding-bottom: 15px;" >
-        <div class="text-left  form-check">
+       
+        <div class="col align-self-end">
         <h2>Разовый платеж при указанном наборе опций:  <a>  {{ prettily(countIntegration()) }} </a></h2> //сделать полу рамку для читабельности
         </div>
-      </div>
+      
 
-      <div class="row">
-        <h1 class="col-md-12" > Ежемесячный платеж </h1>
+      <div class="row justify-content-center" style="margin-left: 0px">
+        <h1 class="col-md-12"  align="start" > Ежемесячный платеж </h1>
         <div class="col-lg-6 col-md-12"  >
-          <div class="text-left form-check">
-            <h2 align="start"> {{ users[0].text0 }}  </h2> 
+          <div class="form-check" align="start" style="padding-left: 0px">
+            <h2> {{ users[0].text0 }}  </h2> 
             <input type="text"  id="E0" placeholder="Введите число пользователей" v-model="users[0].user" class="color long"> 
             <label for="E0"><a> {{prettily(userFun())}} </a></label>
           </div>
         </div>
-        <div class="col-lg-6 col-md-12"  >
-          <div class="text-left form-check">
+        <div class="col-lg-6 col-md-12" style="padding-left: 0px">
+          <div align="start" class="form-check">
             <h2> {{ users[0].text1 }}  </h2> 
             <input type="text"  id="E0" placeholder="Количество пользователей" v-model="users[0].maintenance" class="color long"> 
             <label for="E1"><a> {{ prettily(maintFun()) }} </a></label>
           </div>
         </div>
+        <div class="col align-self-end">
         <h2> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
+        </div>
       </div>
+      
       
       <div class="row justify-content-center">
         <h1 class="col-md-6"> ПОПРОБОВАТЬ </h1>
@@ -805,12 +808,18 @@ export default {
 <style scoped>
 h1 {
   font-size: 200%;
- 
+  padding-bottom: 15px;
+  padding-top: 15px;
+
 
 }
 
 h2 {
-  font-size: 150% 
+  font-size: 150% ;
+  padding-bottom: 0px;
+  padding-top: 15px;
+  margin-bottom: 0px;
+
 }
 
 h3 {
@@ -879,6 +888,10 @@ label {
   background: rgb(255, 255, 255);
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.love {
+  display: block;
 }
 
 </style>
