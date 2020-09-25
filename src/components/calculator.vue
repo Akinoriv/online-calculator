@@ -224,11 +224,11 @@
       </div>
        
         <div class="col align-self-end">
-        <h2>Разовый платеж при указанном наборе опций:  <a>  {{ prettily(countIntegration()) }} </a></h2> //сделать полу рамку для читабельности
+        <h2 class="form-padding">Разовый платеж при указанном наборе опций:  <a>  {{ prettily(countIntegration()) }} </a></h2>
         </div>
       
 
-      <div class="row justify-content-center" style="margin-left: 0px">
+      <div class="row justify-content-center " style="margin-left: 0px">
         <h1 class="col-md-12"  align="start" > Ежемесячный платеж </h1>
         <div class="col-lg-6 col-md-12"  >
           <div class="form-check" align="start" style="padding-left: 0px">
@@ -244,13 +244,13 @@
             <label for="E1"><a> {{ prettily(maintFun()) }} </a></label>
           </div>
         </div>
-        <div class="col align-self-end">
-        <h2> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
+        <div class="col-md-6 align-self-center">
+        <h2 class="form-padding"> Ежемесячный платеж: <a> {{ prettily(monthlySumFun()) }} </a></h2>
         </div>
       </div>
       
       
-      <div class="row justify-content-center">
+      <div class="row justify-content-center ">
         <h1 class="col-md-6"> ПОПРОБОВАТЬ </h1>
          
         <div class="form-group col-md-8 message">
@@ -274,41 +274,13 @@
           <div class="form-check">
             <input class="form-check-input"  v-on:click="true" type="checkbox" id="gridCheck" v-model="forma[0].check">
             <label class="form-check-label"  align="start" for="gridCheck" style="font-size: 90%"> Я даю свое 
-            <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a>
+            <a href="" >Согласие на обработку персональных данных </a>
             </label>
         </div>
         <button type="submit" class="button" v-on:click="saveJS" v-if="checkForm()==false" disabled> Отправить </button>
         <button type="submit" class="button" v-on:click="saveJS" v-if="checkForm()==true"> Отправить </button>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row info" >
-    <div class="col-md-6"> 
-      <h3><b>КОНТАКТЫ</b>
-      <br>
-      <a href="tel:+7(495)374-88-20">+7 (495) 374-88-20 </a>
-      <br>
-      <a href="mailto:sales@myprocessx.com"> sales@myprocessx.com </a>
-      <br>
-      ИП Маркин Кирилл Вадимович
-      <br>
-      ИНН: 502211411399
-      <br>
-      ОГРНИП: 311502224100049
-      <br>
-      г. Москва
-      </h3>
-    </div>
-    <div class="col-md-6"> 
-      <h3><b> ДОПОЛНИТЕЛЬНО </b>
-      <br>
-      <a href="https://www.dropbox.com/s/49k3xhjetiljdyk/%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80%20%D0%B1%D0%B0%D0%B7%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.pdf?dl=0"> Скачать в pdf </a>
-      <br>
-      Документация
-      <br>
-      <a href="https://wiki.vabl.io/">wiki.myprocessx.com </a>
-      </h3>
     </div>
   </div>
 </div>
@@ -826,6 +798,7 @@ h3 {
   font-size: 130%;
   color: #ffffff;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -846,9 +819,15 @@ label {
   font-size: 120%;
   padding-left: 2%;
 }
+
+button{
+  margin: 14px;
+}
+
 .long {
   width: 60%;
 }
+
 .color {
   border-radius: 0px !important ;
   border-color:white white rgb(10, 10, 10) !important;
@@ -880,7 +859,6 @@ label {
   padding-bottom: 10px;
   text-align: left;
   margin-top: 10px;
-
 }
 
 .message {
@@ -890,8 +868,11 @@ label {
   padding-right: 20px;
 }
 
-.love {
-  display: block;
+.form-padding {
+  width: auto;
+  padding: 14px;
+  margin: 24px;
+  background: #d8f1e6
 }
 
 </style>
