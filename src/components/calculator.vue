@@ -273,7 +273,9 @@
           <br>
           <div class="form-check">
             <input class="form-check-input"  v-on:click="true" type="checkbox" id="gridCheck" v-model="forma[0].check">
-            <label class="form-check-label"  align="start" for="gridCheck" style="font-size: 90%"> Я даю свое <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a></label>
+            <label class="form-check-label"  align="start" for="gridCheck" style="font-size: 90%"> Я даю свое 
+            <a href="https://wiki.vabl.io/personal" >Согласие на обработку персональных данных </a>
+            </label>
         </div>
         <button type="submit" class="button" v-on:click="saveJS" v-if="checkForm()==false" disabled> Отправить </button>
         <button type="submit" class="button" v-on:click="saveJS" v-if="checkForm()==true"> Отправить </button>
@@ -781,7 +783,6 @@ export default {
         },
   
   
-
 // сохранить джейсон при нажатии 
     async saveJS () {
       axios({
@@ -795,7 +796,6 @@ export default {
           }
       });
     },
-
   }
 }
 
