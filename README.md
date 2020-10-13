@@ -1,5 +1,7 @@
 # README
 
+### Online calculator calculates the price tag for services
+
 ## Project setup
 ```
 npm install
